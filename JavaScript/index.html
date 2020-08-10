@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="Description" content="Enter your description here" />
+    <meta name="color-scheme" content="dark light">
+    <!-- BOOTSTRAP5 AND FONT AWESOME 5 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+        integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
+    <!-- CUSTOM CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- JAVASCRIPT CDN -->
+    <!-- <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+        integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+        crossorigin="anonymous"></script>
+    <!-- CUSTOM JAVASCRIPT -->
+    <script defer src="./assets/js/Script.js"></script>
+    <title>HelloWorld!</title>
+</head>
+
+<body>
+
+    <!-- https://front-end-noobs.com/jecko/ -->
+    <main class="container">
+
+        <button id="btn-toggle" class="btn btn-sm btn-primary">Toggle Dark-Mode</button>
+
+
+        <a href="./register.html" target="_blank" rel="noopener noreferrer">Registration</a>
+        <a href="./fresh.html" target="_blank" rel="noopener noreferrer">New</a>
+
+        <h1 id='blink'>Hello World</h1>
+
+        <!-- <form>
+            <div>
+                <label for="file">Choose a file to upload</label>
+                <input id="file" name="file" type="file" multiple="">
+                <ul id="file-list">
+        
+                </ul>
+            </div>
+            <div><button>Submit?</button></div>
+        </form> -->
+
+
+        <div id="date">
+            <div id="day"></div>
+            <div id="time"></div>
+        </div>
+
+        <div class="bg-success shadow border-light p-2 mb-3">
+            <div class="form">
+                <h1>Hello World!</h1>
+                <input id="todoInput" class="form-control" type="text" placeholder="Your task" />
+                <button class="btn btn-sm btn-primary mt-1" id="todoAdd">+😂</button>
+            </div>
+            <div id="content">
+                <ul id="todoList">
+                </ul>
+            </div>
+        </div>
+
+
+        <p id='alert'></p>
+        <ul id="ul"></ul>
+        <div id="tree"></div>
+
+        <input type="text" name="input" id="input" class='form-control' />
+        <p>Oninput:
+            <span id='result'></span>
+        </p>
+
+
+
+        <form name="calculator">
+            <h4>Deposit calculator</h4>
+            <div class="row">
+                <div class="col-md-4">
+                    <div>
+                        <label for="money">Initial deposit</label>
+                        <input name="money" type="number" value="10000" class="form-control" required>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div>
+                        <label for="months">How many months?</label>
+                        <select name="months" class="form-control">
+                            <option value="3">3 (minimum)</option>
+                            <option value="6" selected>6 (half-year)</option>
+                            <option value="12">12 (one year)</option>
+                            <option value="18">18 (1.5 years)</option>
+                            <option value="24">24 (2 years)</option>
+                            <option value="30">30 (2.5 years)</option>
+                            <option value="36">36 (3 years)</option>
+                            <option value="60">60 (5 years)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div>
+                        <label for="interest">Interest per year?</label>
+                        <input name="interest" type="number" value="5" class="form-control" required>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+        <style>
+            .border-bottom{
+                border-color:#999 !important;
+            }
+        </style>
+
+        <div class="container row">
+            <div class="col-sm-6 pb-3 border-bottom">
+                <p class="text-center border-bottom">Was:</p>
+                <p class="text-center border-bottom" id="money-before">&#8358;</p>
+                <div class="bg-warning mx-auto" style="width:40px;height:100px"></div>
+            </div>
+
+            <div class="col-sm-6 pb-3 border-bottom">
+                <p class="text-center border-bottom">Becomes:</p>
+                <p class="text-center text border-bottom" id="money-after">&#8358;</p>
+                <div class="bg-success mx-auto" style="width:40px;height:120px" id="height-after"></div>
+            </div>
+        </div>
+
+
+    </main>
+
+</body>
+
+</html>
