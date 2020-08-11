@@ -1,0 +1,140 @@
+    body {
+        font-size: 14px;
+        min-height: 100vh;
+    }
+
+    .alt {
+        box-shadow: 0 1px 3px rgba(50, 50, 93, .15), 0 1px 0 rgba(0, 0, 0, .02);
+        border: 0;
+        transition: box-shadow .15s ease;
+    }
+
+    .bg-secondary {
+        background-color: #e9eaeb !important;
+    }
+
+    .bg-btn {
+        background-image: linear-gradient(#5e72e4, #415cf0);
+        color: white;
+        transition: all ease-in-out 1s;
+
+    }
+
+    .bg-btn:hover {
+        background-image: linear-gradient(#5e72e4f8, #415bf0da);
+        color: white;
+
+    }
+
+    .form-control {
+        transition: all ease-in-out .5s;
+    }
+
+    .form-control:focus {
+        /* color: #495057; */
+        background-color: #fff;
+        border-color: none;
+        outline: 0;
+        box-shadow: none;
+        transform: scale(0.985);
+    }
+
+    .bg-img {
+        background-image: url("https://mcdn.wallpapersafari.com/medium/59/15/LdQBsI.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    small a {
+        text-decoration: none;
+        color: white;
+    }
+    small a:hover,a:focus, a:active {
+text-decoration:none;
+color:#ddd;
+    }
+
+    .bg-navbar {
+        background-image: linear-gradient(#5e72e4, #415cf0);
+    }
+
+    .cent {
+        margin-top: calc(100vh - 80vh);
+    }
+
+    .collapse ul li a {
+        color: white !important;
+    }
+    label{
+        display:none;
+    }
+
+
+    /* =========================home ===================== */
+    div.home {
+        color: #3c4b64;
+        background-color: #1a2035;
+        /* background-color: #0a0b18; */
+        min-height: 100vh;
+    }
+    div.home a{
+        text-decoration:none;
+    }
+    nav.bg-navbar {
+        color: whitesmoke;
+        background-image: linear-gradient(#5e72e4, #415cf0);
+        /* background-color: #0a0b18; */
+    }
+    .navbar-toggler:focus {
+        text-decoration: none;
+        outline: 0;
+        box-shadow: none !important;
+    }
+    .sidebar .font-sm {
+        font-size: 11px !important;
+    }
+    
+#sidebar.active {
+    left: 0;
+}
+#sidebar {
+    width: 200px;
+    position: fixed;
+    top: 0;
+    left: -200px;
+    min-height: 100vh;
+    height: 100vh;
+    z-index: 2000;
+    background-color: #fff;
+    /* background-image: url(https://images.pexels.com/photos/1097456/pexels-photo-1097456.jpeg); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-origin: border-box;
+    color: #fff;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    transition: all .6s cubic-bezier(.68,-.55,.27,1.55);
+    box-shadow: 3px 3px 3px rgba(0,0,0,.2);
+    padding: 0 20px;
+}
+
+.overlay.active {
+    display: block;
+    opacity: 1;
+}
+.overlay {
+    display: none;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,.7);
+    z-index: 998;
+    opacity: 0;
+    transition: all .5s ease-in-out;
+    bottom: 0;
+    left: 0;
+}
+
+.up{
+    z-index: 2000;
+}
