@@ -1,5 +1,5 @@
 var ctx = document.getElementById('myChart');
-var myChart = new Chart(ctx, {
+let myChart = new Chart(ctx, {
     type: 'line',
     data: {
         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July','Aug', 'Sept'],
@@ -10,13 +10,14 @@ var myChart = new Chart(ctx, {
             backgroundColor: '#4799eb',
             borderColor: '#4799eb',
             pointHoverRadius: 30,
-            borderWidth: 1
+            borderWidth: 1,
+            
         },{
             label: 'Pending',
-            data: [4, 19, -14, 5, 2, 3, -30, 12, 29],
+            data: [4, 19, -14, 5, 2, 3, -30, 12, -2],
             fill: 'false',
-            backgroundColor: '#dd9124 ',
-            borderColor: '#dd9124 ',
+            backgroundColor: '#dd9124',
+            borderColor: '#dd9124',
             pointHoverRadius: 30,
             borderWidth: 1
         },{
