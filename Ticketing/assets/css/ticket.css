@@ -1,3 +1,45 @@
+@media (prefers-color-scheme: dark) {
+  /* defaults to dark theme */
+  div.home {
+    color: #3c4b64;
+    background-color: #0a0b18;
+    min-height: 100vh;
+  }
+  .home-chart {
+    background-color: #0a0b18;
+    box-shadow: 2px 4px 6px 1px #191a35 !important;
+  }
+  #table.card {
+    background-color: #0a0b18;
+    border: none; 
+    color:#fff;
+    box-shadow: 2px 4px 6px 1px #191a35 !important;
+  }
+  #table .table-bordered{
+    border: 1px solid rgba(255,255,255,.2);
+  }
+  div.home.light-theme {
+    background-color: #eeeeee;
+    color: #0a0b18;
+    min-height: 100vh;
+  }
+  .home-chart.light-theme {
+    background-color: #eee;
+    color: #0a0b18;
+    box-shadow: 2px 4px 6px 1px #191a35 !important;
+  }
+  #table.card.light-theme {
+    background-color: #eeeeee;
+    border-color: #181924; 
+    color:#0a0b18;
+    box-shadow: 2px 4px 6px 1px #191a35 !important;
+  }
+  #table .table-bordered.light-theme{
+    border: 1px solid rgba(0,0,0,.2);
+  }
+
+}
+
 body {
   font-size: 14px;
   min-height: 100vh;
@@ -76,7 +118,6 @@ label.show{
 div.home {
   color: #3c4b64;
   background-color: #0a0b18;
-  /* background-color: #0a0b18; */
   min-height: 100vh;
 }
 div.home a {
@@ -254,9 +295,7 @@ a:hover {
   border-color: #181924; 
   color:#fff;
 }
-#table .table-bordered{
-  border: 1px solid rgba(255,255,255,.2);
-}
+
 /* FORM */
 #profile div.card-header,
 #profile div.card-footer {

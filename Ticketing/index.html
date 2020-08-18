@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
         integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
         crossorigin="anonymous" />
-        <link rel="stylesheet" href="./assets/css/ticket.css">
+    <link rel="stylesheet" href="./assets/css/ticket.css">
 
 </head>
 
@@ -37,6 +37,10 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                    </li>
+                    <li class="mt-2">
+                        <i id='btn-toggle' class="fas fa-moon"></i>
+                        <i id='btn-toggle' class="fas fa-sun sr-only"></i>
                     </li>
                 </ul>
             </div>
@@ -114,7 +118,7 @@
                 </a>
             </ul>
         </div> -->
- 
+
 
         <div class="container-fluid">
             <div class="row">
@@ -122,7 +126,7 @@
                 <!-- SIDEBAR -->
                 <div class="col-lg-2 sideMenu px-1 d-none d-lg-block d-xl-block change">
                     <ul class="list-unstyled components">
-                        <p style="py-2 text-white">
+                        <p class="py-2 text-white">
                             <img src="https://miratechnologiesng.com/img/icons/miraicon.png" alt="icon"
                                 width='35'>&nbsp;&nbsp;Hello World
                         </p>
@@ -260,10 +264,10 @@
                             </div>
                         </div>
 
-                        <div id='table' class="card pt-2 mt-3 justify-content-center shadow px-2">
+                        <div id='table' class="card pt-2 my-3 shadow px-2">
                             <h6 class="h6 text-left">Ticket&nbsp;Table</h6>
                             <div class="table-responsive">
-                                <table
+                                <table id='text'
                                     class="table table-hover table-bordered table-sm text-center align-middle mb-0 text-white">
                                     <caption>Hello World!</caption>
                                     <thead>
