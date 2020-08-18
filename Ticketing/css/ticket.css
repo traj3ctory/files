@@ -62,7 +62,7 @@ a:active {
   margin-top: calc(100vh - 80vh);
 }
 
-.collapse ul li a {
+.collapse ul a li {
   color: white !important;
 }
 label {
@@ -140,7 +140,7 @@ nav.bg-navbar {
 .up {
   z-index: 2000;
 }
-div ul li a {
+div ul a li {
   text-decoration: none;
   color: #e1e1e1;
 }
@@ -161,36 +161,36 @@ div ul li a {
   margin-left: 260px;
 }
 
-@media only screen and (max-width: 1440px){
-  .content{
+@media only screen and (max-width: 1440px) {
+  .content {
     margin-top: 60px;
     margin-left: 240px;
   }
 }
 
-@media only screen and (max-width: 1280px){
-  .content{
+@media only screen and (max-width: 1280px) {
+  .content {
     margin-top: 60px;
     margin-left: 210px;
   }
 }
 
-@media only screen and (max-width: 1024px){
-  .content{
+@media only screen and (max-width: 1024px) {
+  .content {
     margin-top: 60px;
     margin-left: 170px;
   }
 }
 
-@media only screen and (max-width: 992px){
-  .content{
+@media only screen and (max-width: 992px) {
+  .content {
     margin-top: 60px;
     margin-left: 170px;
   }
 }
 
-@media only screen and (max-width: 768px){
-  .content{
+@media only screen and (max-width: 768px) {
+  .content {
     margin-top: 60px;
     margin-left: 0;
   }
@@ -244,4 +244,30 @@ a:hover {
   width: 15%;
   color: white;
   text-align: center;
+}
+/* TABLE */
+#table.card {
+  background-color: #0a0b18;
+  border-color: #181924; 
+  color:#fff;
+}
+#table .table-bordered{
+  border: 1px solid rgba(255,255,255,.2);
+}
+/* FORM */
+#profile div.card-header,
+#profile div.card-footer {
+  background-color: #20202a;
+  border-color: #181924;
+}
+#profile div.card-body {
+  background-color: #0a0b18;
+  border-color: #181924;
+}
+#profile div.card{
+  border: 1px solid rgba(0,0,0,.8);
+}
+#profilePix div.card-header{
+  background-color: #04021b;
+  border-color: #181924;
 }

@@ -3,10 +3,10 @@
 
     "use strict";
 
-    var toggles = document.querySelectorAll("li > a > .fa-chevron-left");
+    let toggles = document.querySelectorAll("a > li > .fa-chevron-left");
 
-    for (var i = toggles.length - 1; i >= 0; i--) {
-        var toggle = toggles[i];
+    for (let i = toggles.length - 1; i >= 0; i--) {
+        let toggle = toggles[i];
         toggleHandler(toggle);
     };
 
@@ -34,3 +34,12 @@
     }
 
 })();
+
+let edit = document.querySelector('#edit');
+let input = document.getElementsByTagName('input');
+
+for (let d = input.length - 1; d >= 0; d--) {
+    edit.addEventListener("click", function(e) {
+        input[d].removeAttribute("disabled");
+    });
+};
