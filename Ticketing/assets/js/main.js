@@ -35,11 +35,14 @@
 
 })();
 
+// Make Form Editable
 let edit = document.querySelector('#edit');
 let input = document.getElementsByTagName('input');
+
 
 for (let d = input.length - 1; d >= 0; d--) {
     edit.addEventListener("click", function(e) {
         input[d].removeAttribute("disabled");
     });
 };
+

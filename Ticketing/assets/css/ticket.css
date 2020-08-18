@@ -68,6 +68,9 @@ a:active {
 label {
   display: none;
 }
+label.show{
+  display: block;
+}
 
 /* =========================home ===================== */
 div.home {

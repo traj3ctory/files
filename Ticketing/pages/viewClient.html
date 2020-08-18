@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MiraTech | Create Ticket</title>
+    <title>MiraTech | View-Client</title>
     <!-- CSS only -->
     <link rel="shortcut icon" href="https://miratechnologiesng.com/img/icons/miraicon.png" type="image/x-icon">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
         integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
         crossorigin="anonymous" />
-    <link rel="stylesheet" href="./css/ticket.css">
+        <link rel="stylesheet" href="../assets/css/ticket.css">
 
 </head>
 
@@ -43,82 +43,8 @@
         </nav>
 
 
-        <div class="px-2 sideMenu" id="sidebar">
-            <div id="dismiss">
-                <i class="fas fa-times text-dark fa-fw float-right my-3"></i>
-            </div>
-            <ul class="list-unstyled components">
-                <p style="py-2 text-white">
-                    <img src="https://miratechnologiesng.com/img/icons/miraicon.png" alt="icon"
-                        width='35'>&nbsp;&nbsp;Hello World
-                </p>
-                <hr class="bg-white" />
-                <a aria-current="page" class="nav-item active" href="#">
-                    <li class="nav-item active">
-                        <i class="fa fa-tachometer-alt"></i>&nbsp;Dashboard<i
-                            class="fas fa-chevron-left fa-fw float-right"></i>
-                    </li>
-                </a>
-                <a aria-current="page" class="nav-item active" href="#">
-                    <li class="nav-item">
-                        <i class="fa fa-user-friends"></i>&nbsp;Add&nbsp;Client&nbsp;<i
-                            class="fas fa-chevron-left fa-fw float-right"></i>
-                    </li>
-                </a>
-                <a aria-current="page" class="nav-item" href="#">
-                    <li class="nav-item">
-                        <i class="fa fa-user-friends"></i>&nbsp;View&nbsp;Client&nbsp;<i
-                            class="fas fa-chevron-left fa-fw float-right"></i>
-                    </li>
-                </a>
-                <a aria-current="page" class="nav-item" href="/">
-                    <li class="nav-item">
-                        <i class="fa fa-list-ol"></i>&nbsp;List&nbsp;Client&nbsp;<i
-                            class="fas fa-chevron-left fa-fw float-right"></i>
-                    </li>
-                </a>
-                <a aria-current="page" class="nav-item" href="/">
-                    <li class="nav-item">
-                        <i class="fa fa-user-plus"></i>&nbsp;Create&nbsp;User&nbsp;<i
-                            class="fas fa-chevron-left fa-fw float-right"></i>
-                    </li>
-                </a>
-                <a aria-current="page" class="nav-item" href="/">
-                    <li class="nav-item">
-                        <i class="fa fa-list-ul"></i>&nbsp;Ticket&nbsp;List&nbsp;<i
-                            class="fas fa-chevron-left fa-fw float-right"></i>
-                    </li>
-                </a>
-                <a aria-current="page" class="nav-item" href="/">
-                    <li class="nav-item">
-                        <i class="fas fa-ticket-alt fa-fw"></i>&nbsp;View&nbsp;Ticket&nbsp;<i
-                            class="fas fa-chevron-left fa-fw float-right"></i>
-                    </li>
-                </a>
-                <a aria-current="page" class="nav-item" href="./profile.html">
-                    <li class="nav-item">
-                        <i class="fas fa-user fa-fw"></i>&nbsp;Profile&nbsp;<i
-                            class="fas fa-chevron-left fa-fw float-right"></i>
-                    </li>
-                </a>
-                <a aria-current="page" class="nav-item" href="/">
-                    <li class="nav-item">
-                        <i class="fas fa-key fa-fw"></i>&nbsp;Change&nbsp;Password&nbsp;<i
-                            class="fas fa-chevron-left fa-fw float-right"></i>
-                    </li>
-                </a>
-                <a aria-current="page" class="ext-center" href="/">
-                    <li class="nav-item last" style="margin: 0 35%;">
-                        <i class="fas fa-power-off text-danger">&nbsp;<b style="color:white">&nbsp;Logout</b></i>
-                    </li>
-                </a>
-            </ul>
-        </div>
-        <div class="overlay"></div>
-
         <div class="container-fluid">
             <div class="row">
-                <!-- SIDEBAR -->
                 <div class="col-lg-2 sideMenu px-1 d-none d-lg-block d-xl-block">
                     <ul class="list-unstyled components">
                         <p style="py-2 text-white">
@@ -182,56 +108,69 @@
                         </a>
                     </ul>
                 </div>
-                <!-- SIDEBAR -->
 
                 <!-- MAIN -->
                 <div class="col-lg-10 col-md-12 content text-white">
 
                     <div class="row mt-4">
 
-                        <div class="col-md-12" id="profile">
+                        <div class="col-md-9 mb-3" id="profile">
                             <form action="">
                                 <div class="card">
                                     <div class="card-header">
-                                        Create Ticket
-                                        
+                                        View Client
+                                        <span class="float-right" id='edit'><i class="fas fa-pen-square fa-2x"></i>
+                                        </span>
                                     </div>
                                     <div class="card-body">
 
                                         <div class="row">
-                                            
-                                            <div class="col-md-12 mb-3">
+
+
+                                            <div class="col-md-6 mb-3">
                                                 <div class="form-group">
-                                                    <label for="" class="">Email</label>
+                                                    <label for="" class="show">Email</label>
                                                     <input type="text" class="form-control form-control-sm" name=""
-                                                        id="" value="Johndoe@mail.com" placeholder="" />
+                                                        id="" value="Johndoe@mail.com" placeholder="" disabled />
                                                 </div>
                                             </div>
                                             <div class="col-md-6 mb-3">
                                                 <div class="form-group">
-                                                    <label for="" class="">Subject</label>
+                                                    <label for="" class="show">Phone-number</label>
                                                     <input type="text" class="form-control form-control-sm" name=""
-                                                        id="" value="John" placeholder="" />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <div class="form-group">
-                                                    <label for="type" class="">Ticket&nbsp;Type</label>
-                                                    <select name="type" id="type" class="form-select form-select-sm">
-                                                        <option value="" selected disabled>--Select&nbsp;Ticket&nbsp;Type--</option>
-                                                        <option value="complaint">complaint</option>
-                                                        <option value="request">Request</option>
-                                                        <option value="enquiry">Enquiry</option>
-                                                    </select>
+                                                        id="" value="00000000000000" placeholder="" disabled />
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-12 mb-3">
+                                            <div class="col-md-6 mb-3">
                                                 <div class="form-group">
-                                                    <label for="message">Message</label>
-                                                    <textarea id="message" name="message" rows="10" cols="50" class="form-control text-left">
-                                                        
-                                                    </textarea>
+                                                    <label for="" class="show">Company&nbsp;Name</label>
+                                                    <input type="text" class="form-control form-control-sm" name=""
+                                                        id="" value="John and sons" placeholder="" disabled />
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6 mb-3">
+                                                <div class="form-group">
+                                                    <label for="" class="show">Personal&nbsp;Name</label>
+                                                    <input type="text" class="form-control form-control-sm" name=""
+                                                        id="" value="John and sons" placeholder="" disabled />
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6 mb-3">
+                                                <div class="form-group">
+                                                    <label for="" class="show">Company&nbsp;Address</label>
+                                                    <input type="text" class="form-control form-control-sm" name=""
+                                                        id="" value="No 6 Hello World close" placeholder="" disabled />
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6 mb-3">
+                                                <div class="form-group">
+                                                    <label for="" class="show">Image</label>
+                                                    <input type="file" class="form-file form-file-sm" name=""
+                                                        id="" placeholder="" />
                                                 </div>
                                             </div>
 
@@ -256,6 +195,21 @@
                                 </div>
                             </form>
                         </div>
+
+                        <div class="col-md-3 text-center" id='profilePix'>
+                            <div class="card">
+                                <div class="card-header py-5">
+                                </div>
+                                <div class="card-body">
+                                    <img src="https://miratechnologiesng.com/img/icons/miraicon.png"
+                                        alt="profile picture" class="img-fluid" style="margin-top:-80px">
+                                    <p class="text-dark">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                        Repudiandae veniam ullam excepturi natus perspiciatis distinctio amet error
+                                        nostrum
+                                        voluptas at accusamus,.</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
@@ -263,6 +217,7 @@
             </div>
         </div>
 
+        <div class="overlay"></div>
 
     </div>
 
