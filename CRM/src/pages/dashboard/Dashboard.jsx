@@ -4,7 +4,7 @@ import Chart from './Chart';
 export default function Dashboard() {
     return (
         <div>
-            <div className="row justify-content-center mt-3 text-white">
+            <div className="row mt-3 mx-3 text-white">
 
                 <div className="col-lg-3 col-md-6 col-sm-12 col-xs-12 mb-3">
                     <div className="p-2 card card1">
@@ -55,7 +55,7 @@ export default function Dashboard() {
 
             </div>
 
-            <div className="row card mt-3 justify-content-center mx-2">
+            <div className="row card mt-3 mx-4 justify-content-center mx-2">
                 <div className="col-12 card-body shadow home-chart">
                     <div className="d-flex justify-content-between">
                         <div>
@@ -63,12 +63,11 @@ export default function Dashboard() {
                             <div className="small text-muted">August 2020</div>
                         </div>
                     </div>
-                    {/* <canvas id="myChart" height="120px"></canvas> */}
                     <Chart />
                 </div>
             </div>
 
-            <div id='table' className="card pt-2 my-3 shadow px-2">
+            <div id='table' className="card pt-2 my-3 mx-4 shadow px-2">
                 <h6 className="h6 text-left">Ticket&nbsp;Table</h6>
                 <div className="table-responsive">
                     <table id='text'
@@ -76,13 +75,13 @@ export default function Dashboard() {
                         <caption>Hello World!</caption>
                         <thead>
                             <tr>
-                            <th>S/N</th>
-                            <th><i className="fas fa-user-graduate"></i></th>
-                            <th>Date&nbsp;&&nbsp;Time</th>
-                            <th>Client&nbsp;Name</th>
-                            <th>Status</th>
+                                <th>S/N</th>
+                                <th><i className="fas fa-user-graduate"></i></th>
+                                <th>Date&nbsp;&&nbsp;Time</th>
+                                <th>Client&nbsp;Name</th>
+                                <th>Status</th>
                             </tr>
-                            
+
                         </thead>
                         <tbody>
                             <tr>
@@ -136,6 +135,7 @@ export default function Dashboard() {
                 </div>
             </div>
             <div className="overlay"></div>
+
         </div>
     )
 }

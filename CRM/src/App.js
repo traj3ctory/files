@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Redirect, BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { HTTPURL } from './common/global_constant';
 
 // import './App.css';
@@ -11,6 +11,13 @@ import Login from "./pages/login/login";
 import SignUp from "./pages/signup/signup";
 import ForgotPassword from "./pages/forgot_password/forgot_password";
 import Dashboard from './pages/dashboard/Dashboard';
+import ChangePassword from './pages/change_password/ChangePassword';
+import CreateClient from './pages/create_client/CreateClient';
+import CreateUser from './pages/create_user/CreateUser';
+import Profile from './pages/profile/Profile';
+import TicketList from './pages/ticket_list/TicketList';
+import ViewClient from './pages/view_client/ViewClient';
+import ListClient from './pages/list_client/ListClient'
 
 import Nav from './common/components/Nav';
 import Sidebar from './common/components/Sidebar';
@@ -21,12 +28,14 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loggedIn: false
+      loggedIn: true
     }
   }
   loginUser = async (email, password) => {
-    await fetch(HTTPURL + 'user/login');
+    // await fetch(HTTPURL + 'user/login');
+    this.setState({ loggedIn: true });
     console.log('Yuppie i logged ', email, password);
+    return { status: true, message: 'Login successful' };
   }
 
   logoutUser = () => this.setState({ loggedIn: false });
@@ -35,23 +44,35 @@ class App extends Component {
     return { ...this.state, login: this.loginUser, logout: this.logoutUser }
   };
 
+
   render() {
+
     return (
+
       <Provider value={this.getContext()}>
         <div className="home">
           <Fragment>
             <Router>
               <Nav />
-              <div className="d-flex">
-                <Sidebar />
-                <div className="container-fluid mx-auto">
-                <Switch>
-                  <Route path="/login" component={Login} />
-                  <Route path="/signup" component={SignUp} />
-                  <Route exact path="/" component={Dashboard} />
-                  <Route path="/forgot_password" component={ForgotPassword} />
-                  <Route component={NotFound} />
-                </Switch>
+              <div className="App" id="wrapper">
+                {this.state.loggedIn && <Sidebar />}
+                <div className="content">
+                  <Switch>
+                    {!this.state.loggedIn && <Route path="/" component={Login} />}
+                    {!this.state.loggedIn && <Route path="/login" component={Login} />}
+                    {!this.state.loggedIn && <Route path="/signup" component={SignUp} />}
+                    {!this.state.loggedIn && <Redirect from="/dashboard" to="/login" />}
+                    {this.state.loggedIn && <Route exact path="/dashboard" component={Dashboard} />}
+                    {this.state.loggedIn && <Route path="/forgot_password" component={ForgotPassword} />}
+                    {this.state.loggedIn && <Route path="/createClient" component={CreateClient} />}
+                    {this.state.loggedIn && <Route path="/creatUser" component={CreateUser} />}
+                    {this.state.loggedIn && <Route path="/profile" component={Profile} />}
+                    {this.state.loggedIn && <Route path="/ticketList" component={TicketList} />}
+                    {this.state.loggedIn && <Route path="/viewClient" component={ViewClient} />}
+                    {this.state.loggedIn && <Route path="/listClient" component={ListClient} />}
+                    {this.state.loggedIn && <Route path="/changePassword" component={ChangePassword} />}
+                    <Route component={NotFound} />
+                  </Switch>
                 </div>
               </div>
             </Router>
@@ -60,6 +81,8 @@ class App extends Component {
       </Provider>
     )
   };
+
+  
 }
 
 export default App;

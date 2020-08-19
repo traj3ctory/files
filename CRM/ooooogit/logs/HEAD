@@ -1,0 +1,36 @@
+0000000000000000000000000000000000000000 bc1e390298c82a1cb32c2c551fbd98e88dd66adc traj3ctory <davidbenard.bd@gmail.com> 1597767759 +0100	clone: from http://192.168.1.4/miratechvc/CRM.git
+bc1e390298c82a1cb32c2c551fbd98e88dd66adc bc1e390298c82a1cb32c2c551fbd98e88dd66adc traj3ctory <davidbenard.bd@gmail.com> 1597833170 +0100	checkout: moving from master to page
+bc1e390298c82a1cb32c2c551fbd98e88dd66adc 4b7b46f8ba2e7006731560f3d2e157f817fcafed traj3ctory <davidbenard.bd@gmail.com> 1597833206 +0100	commit: component to update view
+4b7b46f8ba2e7006731560f3d2e157f817fcafed 888acb64dfcfaa79b7a1bd22c17bff7bf1468fdb traj3ctory <davidbenard.bd@gmail.com> 1597835168 +0100	commit: component to update page view
+888acb64dfcfaa79b7a1bd22c17bff7bf1468fdb 888acb64dfcfaa79b7a1bd22c17bff7bf1468fdb traj3ctory <davidbenard.bd@gmail.com> 1597835384 +0100	checkout: moving from page to dev
+888acb64dfcfaa79b7a1bd22c17bff7bf1468fdb 888acb64dfcfaa79b7a1bd22c17bff7bf1468fdb traj3ctory <davidbenard.bd@gmail.com> 1597835567 +0100	checkout: moving from dev to page
+888acb64dfcfaa79b7a1bd22c17bff7bf1468fdb 888acb64dfcfaa79b7a1bd22c17bff7bf1468fdb traj3ctory <davidbenard.bd@gmail.com> 1597835710 +0100	checkout: moving from page to dev
+888acb64dfcfaa79b7a1bd22c17bff7bf1468fdb 4878d447345513c4c3ec8959115865cf4a53ed59 traj3ctory <davidbenard.bd@gmail.com> 1597836492 +0100	pull: Fast-forward
+4878d447345513c4c3ec8959115865cf4a53ed59 888acb64dfcfaa79b7a1bd22c17bff7bf1468fdb traj3ctory <davidbenard.bd@gmail.com> 1597836560 +0100	checkout: moving from dev to page
+888acb64dfcfaa79b7a1bd22c17bff7bf1468fdb 4878d447345513c4c3ec8959115865cf4a53ed59 traj3ctory <davidbenard.bd@gmail.com> 1597836712 +0100	checkout: moving from page to dev
+4878d447345513c4c3ec8959115865cf4a53ed59 888acb64dfcfaa79b7a1bd22c17bff7bf1468fdb traj3ctory <davidbenard.bd@gmail.com> 1597836745 +0100	checkout: moving from dev to page
+888acb64dfcfaa79b7a1bd22c17bff7bf1468fdb 4878d447345513c4c3ec8959115865cf4a53ed59 traj3ctory <davidbenard.bd@gmail.com> 1597836768 +0100	pull origin dev: Fast-forward
+4878d447345513c4c3ec8959115865cf4a53ed59 6c24a7ddadde4a507486e9caef678022051b66a4 traj3ctory <davidbenard.bd@gmail.com> 1597839876 +0100	commit: dashboard
+6c24a7ddadde4a507486e9caef678022051b66a4 4878d447345513c4c3ec8959115865cf4a53ed59 traj3ctory <davidbenard.bd@gmail.com> 1597839945 +0100	checkout: moving from page to dev
+4878d447345513c4c3ec8959115865cf4a53ed59 6c24a7ddadde4a507486e9caef678022051b66a4 traj3ctory <davidbenard.bd@gmail.com> 1597839953 +0100	checkout: moving from dev to page
+6c24a7ddadde4a507486e9caef678022051b66a4 4878d447345513c4c3ec8959115865cf4a53ed59 traj3ctory <davidbenard.bd@gmail.com> 1597839991 +0100	checkout: moving from page to dev
+4878d447345513c4c3ec8959115865cf4a53ed59 6c24a7ddadde4a507486e9caef678022051b66a4 traj3ctory <davidbenard.bd@gmail.com> 1597840001 +0100	checkout: moving from dev to page
+6c24a7ddadde4a507486e9caef678022051b66a4 4878d447345513c4c3ec8959115865cf4a53ed59 traj3ctory <davidbenard.bd@gmail.com> 1597840018 +0100	checkout: moving from page to dev
+4878d447345513c4c3ec8959115865cf4a53ed59 6c24a7ddadde4a507486e9caef678022051b66a4 traj3ctory <davidbenard.bd@gmail.com> 1597840028 +0100	checkout: moving from dev to page
+6c24a7ddadde4a507486e9caef678022051b66a4 4878d447345513c4c3ec8959115865cf4a53ed59 traj3ctory <davidbenard.bd@gmail.com> 1597840292 +0100	checkout: moving from page to dev
+4878d447345513c4c3ec8959115865cf4a53ed59 6c24a7ddadde4a507486e9caef678022051b66a4 traj3ctory <davidbenard.bd@gmail.com> 1597840297 +0100	merge page: Fast-forward
+6c24a7ddadde4a507486e9caef678022051b66a4 ba0a84b820096af613bd02c02a878726736f23da traj3ctory <davidbenard.bd@gmail.com> 1597841297 +0100	commit: dashboard
+ba0a84b820096af613bd02c02a878726736f23da 6c24a7ddadde4a507486e9caef678022051b66a4 traj3ctory <davidbenard.bd@gmail.com> 1597841337 +0100	checkout: moving from dev to page
+6c24a7ddadde4a507486e9caef678022051b66a4 deeffb07dc74d1e02201ecee4a434975155b2fc0 traj3ctory <davidbenard.bd@gmail.com> 1597844133 +0100	commit: component adds forgot password page
+deeffb07dc74d1e02201ecee4a434975155b2fc0 ba0a84b820096af613bd02c02a878726736f23da traj3ctory <davidbenard.bd@gmail.com> 1597844157 +0100	checkout: moving from page to dev
+ba0a84b820096af613bd02c02a878726736f23da b35847dc3d952c612ee6a385da621e1d4b0b2e30 traj3ctory <davidbenard.bd@gmail.com> 1597844526 +0100	commit (merge): Merge branch 'page' into dev
+b35847dc3d952c612ee6a385da621e1d4b0b2e30 deeffb07dc74d1e02201ecee4a434975155b2fc0 traj3ctory <davidbenard.bd@gmail.com> 1597844619 +0100	checkout: moving from dev to page
+deeffb07dc74d1e02201ecee4a434975155b2fc0 9137d231ba7f35e0011a05bc5717c792e6d900b8 traj3ctory <davidbenard.bd@gmail.com> 1597850606 +0100	commit: component to add page
+9137d231ba7f35e0011a05bc5717c792e6d900b8 f49259f10f9d14deaa3916879d23cdd79d2feccb traj3ctory <davidbenard.bd@gmail.com> 1597850832 +0100	commit (merge): pages
+f49259f10f9d14deaa3916879d23cdd79d2feccb b35847dc3d952c612ee6a385da621e1d4b0b2e30 traj3ctory <davidbenard.bd@gmail.com> 1597850847 +0100	checkout: moving from page to dev
+b35847dc3d952c612ee6a385da621e1d4b0b2e30 f49259f10f9d14deaa3916879d23cdd79d2feccb traj3ctory <davidbenard.bd@gmail.com> 1597850855 +0100	merge page: Fast-forward
+f49259f10f9d14deaa3916879d23cdd79d2feccb f49259f10f9d14deaa3916879d23cdd79d2feccb traj3ctory <davidbenard.bd@gmail.com> 1597850939 +0100	checkout: moving from dev to page
+f49259f10f9d14deaa3916879d23cdd79d2feccb f49259f10f9d14deaa3916879d23cdd79d2feccb traj3ctory <davidbenard.bd@gmail.com> 1597850975 +0100	checkout: moving from page to dev
+f49259f10f9d14deaa3916879d23cdd79d2feccb b0f2a463ac9f85c3fbe6d33ad082adccd91a5072 traj3ctory <davidbenard.bd@gmail.com> 1597852764 +0100	commit: complete page
+b0f2a463ac9f85c3fbe6d33ad082adccd91a5072 f49259f10f9d14deaa3916879d23cdd79d2feccb traj3ctory <davidbenard.bd@gmail.com> 1597852786 +0100	checkout: moving from dev to page
+f49259f10f9d14deaa3916879d23cdd79d2feccb b0f2a463ac9f85c3fbe6d33ad082adccd91a5072 traj3ctory <davidbenard.bd@gmail.com> 1597852798 +0100	merge dev: Fast-forward
