@@ -139,6 +139,9 @@ label {
 label.show {
   display: block;
 }
+label {
+  margin-bottom : 0 !important;
+}
 
 /* =========================home ===================== */
 
@@ -398,4 +401,7 @@ a:hover {
 }
 .table-hover tbody tr:hover {
   color: #c1cdd8 !important;
+}
+#chat small{
+  font-size: 11px;
 }
