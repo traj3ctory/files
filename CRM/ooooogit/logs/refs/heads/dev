@@ -1,7 +1,0 @@
-0000000000000000000000000000000000000000 888acb64dfcfaa79b7a1bd22c17bff7bf1468fdb traj3ctory <davidbenard.bd@gmail.com> 1597835384 +0100	branch: Created from HEAD
-888acb64dfcfaa79b7a1bd22c17bff7bf1468fdb 4878d447345513c4c3ec8959115865cf4a53ed59 traj3ctory <davidbenard.bd@gmail.com> 1597836492 +0100	pull: Fast-forward
-4878d447345513c4c3ec8959115865cf4a53ed59 6c24a7ddadde4a507486e9caef678022051b66a4 traj3ctory <davidbenard.bd@gmail.com> 1597840297 +0100	merge page: Fast-forward
-6c24a7ddadde4a507486e9caef678022051b66a4 ba0a84b820096af613bd02c02a878726736f23da traj3ctory <davidbenard.bd@gmail.com> 1597841297 +0100	commit: dashboard
-ba0a84b820096af613bd02c02a878726736f23da b35847dc3d952c612ee6a385da621e1d4b0b2e30 traj3ctory <davidbenard.bd@gmail.com> 1597844526 +0100	commit (merge): Merge branch 'page' into dev
-b35847dc3d952c612ee6a385da621e1d4b0b2e30 f49259f10f9d14deaa3916879d23cdd79d2feccb traj3ctory <davidbenard.bd@gmail.com> 1597850855 +0100	merge page: Fast-forward
-f49259f10f9d14deaa3916879d23cdd79d2feccb b0f2a463ac9f85c3fbe6d33ad082adccd91a5072 traj3ctory <davidbenard.bd@gmail.com> 1597852764 +0100	commit: complete page

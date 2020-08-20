@@ -1,0 +1,12 @@
+0000000000000000000000000000000000000000 bc1e390298c82a1cb32c2c551fbd98e88dd66adc traj3ctory <davidbenard.bd@gmail.com> 1597833170 +0100	branch: Created from HEAD
+bc1e390298c82a1cb32c2c551fbd98e88dd66adc 4b7b46f8ba2e7006731560f3d2e157f817fcafed traj3ctory <davidbenard.bd@gmail.com> 1597833206 +0100	commit: component to update view
+4b7b46f8ba2e7006731560f3d2e157f817fcafed 888acb64dfcfaa79b7a1bd22c17bff7bf1468fdb traj3ctory <davidbenard.bd@gmail.com> 1597835168 +0100	commit: component to update page view
+888acb64dfcfaa79b7a1bd22c17bff7bf1468fdb 4878d447345513c4c3ec8959115865cf4a53ed59 traj3ctory <davidbenard.bd@gmail.com> 1597836768 +0100	pull origin dev: Fast-forward
+4878d447345513c4c3ec8959115865cf4a53ed59 6c24a7ddadde4a507486e9caef678022051b66a4 traj3ctory <davidbenard.bd@gmail.com> 1597839876 +0100	commit: dashboard
+6c24a7ddadde4a507486e9caef678022051b66a4 deeffb07dc74d1e02201ecee4a434975155b2fc0 traj3ctory <davidbenard.bd@gmail.com> 1597844133 +0100	commit: component adds forgot password page
+deeffb07dc74d1e02201ecee4a434975155b2fc0 9137d231ba7f35e0011a05bc5717c792e6d900b8 traj3ctory <davidbenard.bd@gmail.com> 1597850606 +0100	commit: component to add page
+9137d231ba7f35e0011a05bc5717c792e6d900b8 f49259f10f9d14deaa3916879d23cdd79d2feccb traj3ctory <davidbenard.bd@gmail.com> 1597850832 +0100	commit (merge): pages
+f49259f10f9d14deaa3916879d23cdd79d2feccb b0f2a463ac9f85c3fbe6d33ad082adccd91a5072 traj3ctory <davidbenard.bd@gmail.com> 1597852798 +0100	merge dev: Fast-forward
+b0f2a463ac9f85c3fbe6d33ad082adccd91a5072 157e09fe8f94da5847330aa1fbf5a3c379575ed8 traj3ctory <davidbenard.bd@gmail.com> 1597908930 +0100	commit: chat page
+157e09fe8f94da5847330aa1fbf5a3c379575ed8 84cc40f6f0f0897d223eb979cbbd4bebbae4ab3b traj3ctory <davidbenard.bd@gmail.com> 1597936390 +0100	commit: ticket
+84cc40f6f0f0897d223eb979cbbd4bebbae4ab3b 05be30f075a3fc52cb8caed5dee23496849e0207 traj3ctory <davidbenard.bd@gmail.com> 1597941484 +0100	merge dev: Fast-forward
