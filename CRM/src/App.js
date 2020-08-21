@@ -30,7 +30,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loggedIn: true
+      loggedIn: false,
+      users: []
     }
   }
   loginUser = async (email, password) => {
@@ -40,6 +41,19 @@ class App extends Component {
     return { status: true, message: 'Login successful' };
   }
 
+  signupUser = async (username, email, password) => {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: username, email:email, password:password })
+    };
+    await fetch(HTTPURL + 'user/signup', requestOptions)
+        .then(response => response.json())
+        .then(data => console.log(data.json));
+    
+    console.log('Registered Successfully ', username, email, password);
+  }
+
   changePassword = async (currentpwd, newpwd, confirmnewpwd) => {
     console.log('Changed Successfully ', currentpwd,newpwd, confirmnewpwd);
   }
@@ -47,7 +61,7 @@ class App extends Component {
   logoutUser = () => this.setState({ loggedIn: false });
 
   getContext = () => {
-    return { ...this.state, login: this.loginUser, logout: this.logoutUser, changepassword: this.changePassword }
+    return { ...this.state, login: this.loginUser, logout: this.logoutUser, signup: this.signupUser, changepassword: this.changePassword }
   };
 
 
@@ -64,14 +78,14 @@ class App extends Component {
                 {this.state.loggedIn && <Sidebar />}
                 <div className="content">
                   <Switch>
+                    {<Route path="/signup" component={SignUp} />}
+                    {<Route path="/login" component={Login} />}
+                    {<Route path="/forgotpassword" component={ForgotPassword} />}
                     {!this.state.loggedIn && <Route path="/" component={Login} />}
-                    {!this.state.loggedIn && <Route path="/login" component={Login} />}
-                    {!this.state.loggedIn && <Route path="/signup" component={SignUp} />}
                     {!this.state.loggedIn && <Redirect from="/dashboard" to="/login" />}
                     {this.state.loggedIn && <Route exact path="/dashboard" component={Dashboard} />}
-                    {this.state.loggedIn && <Route path="/forgot_password" component={ForgotPassword} />}
-                    {this.state.loggedIn && <Route path="/createClient" component={CreateClient} />}
-                    {this.state.loggedIn && <Route path="/creatUser" component={CreateUser} />}
+                    {this.state.loggedIn && <Route path="/createclient" component={CreateClient} />}
+                    {this.state.loggedIn && <Route path="/creatuser" component={CreateUser} />}
                     {this.state.loggedIn && <Route path="/profile" component={Profile} />}
                     {this.state.loggedIn && <Route path="/ticketList" component={TicketList} />}
                     {this.state.loggedIn && <Route path="/viewClient" component={ViewClient} />}

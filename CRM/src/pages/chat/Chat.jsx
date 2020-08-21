@@ -72,7 +72,7 @@ export default class Chat extends Component {
                     <div className="card-header text-white">
                         Ticket Chat
                     </div>
-                    <FilePond allowMultiple={true}/>
+                    <FilePond allowMultiple={true} onChange={(e) => console.log(e)} />
     
                     <div className="card-body" style={{ overflowY: 'scroll', minHeight: '400px', maxHeight: '450px' }}>
                         <div id="chat">
