@@ -44,20 +44,33 @@ class SignUp extends Component {
         }else{
             await this.setState({loading : true});
             setTimeout(() =>this.setState({loading : false}), 3000);
+<<<<<<< HEAD
             const res = await this.state.signup(document.getElementById("signupform"));
            if(!res['status'])this.setState({errormessage: res['message']});
             else{
                 //find a way to redirect here 
                 this.props.history.push('/login');
             }
+=======
+           const res = await this.state.signup(document.getElementById("signupform"));
+           console.log(res);
+           console.log(name, email, password, telephone);
+        
+           this.props.history.push('/')
+        //    if (!res['status']) this.setState({errormessage: res['message']});
+        //     else{
+        //         //find a way to redirect here 
+        //         this.props.history.push('/login');
+        //     }
+>>>>>>> 11d901d09664726fa781cfbbbafe1202ba2daa87
         }
-        console.log(
-            `
-            name: ${this.state.name}
-            email:${this.state.email}
-            password:${this.state.password}
-            telephone: ${this.state.telephone}`
-        )
+        // console.log(
+        //     `
+        //     name: ${this.state.name}
+        //     email:${this.state.email}
+        //     password:${this.state.password}
+        //     telephone: ${this.state.telephone}`
+        // )
     }
 
     render() {

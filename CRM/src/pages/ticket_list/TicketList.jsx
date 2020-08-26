@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
+<<<<<<< HEAD
 import { withContext } from '../../common/context';
+=======
+import { HTTPURL } from '../../common/global_constant';
+import {withContext} from '../../common/context';
+>>>>>>> 11d901d09664726fa781cfbbbafe1202ba2daa87
 
 class TicketList extends Component {
     constructor(props) {
         super(props);
         this.state = {
             ticket: [],
+<<<<<<< HEAD
             tickets: [
                 {
                     "ticketid": 1,
@@ -39,7 +45,53 @@ class TicketList extends Component {
         }
     }
     componentDidMount() {
+=======
+            id: 1,
+            tickets : [
+                // {
+                //     "ticketid" : 1,
+                //     "Date" : "2020-08-17" ,
+                //     "client_name" : "John Doe",
+                //     "email" : "John@gmail.com",
+                //     "type" : "Complaint",
+                //     "message" : "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducires...!",
+                //     "ticketstatus" : "Approved"
+                // }, 
+                // {
+                //     "ticketid" : 2,
+                //     "Date" : "2020-08-17" ,
+                //     "client_name" : "Stone Walker",
+                //     "email" : "Stone@gmail.com",
+                //     "type" : "Enquiry",
+                //     "message" : "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducires...!",
+                //     "ticketstatus" : "Cancelled"
+                // }, 
+                // {
+                //     "ticketid" : 3,
+                //     "Date" : "2020-08-17" ,
+                //     "client_name" : "Jane Doe",
+                //     "email" : "Jane@gmail.com",
+                //     "type" : "Suggestion",
+                //     "message" : "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducires...!",
+                //     "ticketstatus" : "Pending"
+                // }
+                
+            ]
+        }
+    }
+    componentDidMount(){
+        const headers = new Headers();
+        headers.append('API-KEY','97899c-7d0420-1273f0-901d29-84e2f8');
+        fetch(HTTPURL + 'ticket/?userid=5f3e930330e28', {
+            method: 'GET',
+            headers: headers
+        })
+        .then(response => response.json())
+        .then(data => this.setState({tickets: data.data}));
+
+>>>>>>> 11d901d09664726fa781cfbbbafe1202ba2daa87
         let ticket = []
+        console.log('changed successfully!', ticket)
         for (let i = 0; i < this.state.tickets.length; i++) {
             console.log(this.state.tickets[i])
             ticket.push(this.state.tickets[i])
@@ -51,11 +103,26 @@ class TicketList extends Component {
     //         $(this).parents('.dropdown').find('button').text($(this).text());
     //     });
     //  });
+<<<<<<< HEAD
     changeStatus(e, ticket) {
 
         const tickets = this.state.tickets.map(item => {
             console.log(e.target.value);
             if (item.ticketid === ticket.ticketid) item.status = e.target.value;
+=======
+     changeStatus(e,ticket) {
+        
+        // document.querySelectorAll(".nav-item").forEach(item => {
+        //             item.addEventListener("click", () => {
+        //                 document.querySelector('#sidebar').classList.toggle('active');
+        //                 document.querySelector('.overlay').classList.toggle('active');
+        //             })
+
+
+        const tickets = this.state.tickets.map(item=>{ 
+            console.log(e.target.value);
+            if(item.ticketid == ticket.ticketid) item.ticketstatus  = e.target.value;
+>>>>>>> 11d901d09664726fa781cfbbbafe1202ba2daa87
             return item;
         })
 
@@ -99,6 +166,7 @@ class TicketList extends Component {
                                                     </tr>
 
                                                 </thead>
+<<<<<<< HEAD
                                                 <tbody>
                                                     {this.state.tickets.map(ticket => {
                                                         return (
@@ -135,6 +203,52 @@ class TicketList extends Component {
                                                         )
                                                     })
                                                     }
+=======
+                                                <tbody> 
+                                                    
+                                                {this.state.tickets.map( ticket => {
+                                                     return(
+
+                                                        <tr>
+                                                            <td>
+                                                                {this.state.id++}
+                                                            </td>
+                                                            <td>
+                                                                {ticket.createdat}
+                                                            </td>
+                                                            <td>
+                                                                {ticket.client_name}
+                                                            </td>
+                                                            <td>
+                                                                {ticket.email}
+                                                            </td>
+                                                            <td>
+                                                                {ticket.type}
+                                                            </td>
+                                                            <td style={{minWidth: "120px", textAlign: "left"}}>
+                                                                {ticket.message}
+                                                            </td>
+                                                            <td className="align-middle" style={{minWidth: "105px"}}>
+                                                            <select className="custom-select custom-select-sm" onChange={(e) =>this.changeStatus(e,ticket)}>
+                                                                <option value="" selected > {ticket.ticketstatus}</option>
+                                                                <option className="btn btn-sm text-success" value="approved">
+                                                                    &#10003;
+                                                                    Approved</option>
+                                                                <option className="btn btn-sm text-danger" value="cancelled">
+                                                                    &#1008;
+                                                                    Cancelled</option>
+                                                                <option className="btn btn-sm btn-light text-warning" value="pending">
+                                                                    &#10070;
+                                                                    Pending</option>
+                                                            </select>
+                                                            </td>
+                                                            <td className="align-middle"><i className="fas fa-eye" data-toggle="modal"
+                                                            data-target="#viewTicket"></i></td>
+                                                        </tr>
+                                                     )
+                                                    })  
+                                                }  
+>>>>>>> 11d901d09664726fa781cfbbbafe1202ba2daa87
 
 
 
