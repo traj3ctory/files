@@ -1,19 +1,17 @@
 import React, { Component } from 'react'
 import {withContext} from '../../common/context';
 
-class CreateProduct extends Component {
+class addpackage extends Component {
     constructor(props){
         super(props);
         this.state = { 
             ...this.props, 
             name : '', 
+            productid: '',
             description: '',
             errormessage: '',
             loading: false,
             successmessage: '',
-            file: '',
-            imagePreviewUrl: '',
-            imageError: false,
         };
     }
     
@@ -30,70 +28,15 @@ class CreateProduct extends Component {
             this.setState({successmessage: 'Added Successfully!'})
             setTimeout(() =>{
                 this.setState({successmessage: false});
-                const res = this.state.createproduct(document.getElementById("createproduct"));
+                const res = this.state.addpackage(document.getElementById("addpackage"));
                  console.log('submitting')
-                 this.setState({name: '', description: '', file: ''})
+                 this.setState({name: '', description: ''})
             }, 5000);
         }, 3000);
     
     }
 
-    removeImage(e) {
-        console.log(e, "Image removed")
-        this.setState({imagePreviewUrl: ''})
-    }
-
-    removeOtherImage(e) {
-        console.log(e, "Image removed")
-        this.setState({ file: '',imageError : false})
-        setTimeout(()=> this.setState({imageError: ''}),5000);
-        // let myElement = document.querySelector(".other_files");
-        // myElement.style.display = "none";
-    }
-    handleImageChange(e) {
-        e.preventDefault();
-
-        let reader = new FileReader();
-        let file = e.target.files[0];
-
-        let images = []
-        for (var i = 0; i < e.target.files.length; i++) {
-            images[i] = e.target.files.item(i);
-        }
-        images = images.filter(file => file.name.match(/\.(jpg|jpeg|png|gif)$/))
-        
-        if (images.length === 0){
-
-            reader.onloadend = () => {
-                this.setState({
-                    file: file,
-                    imagePreviewUrl: '',
-                    imageError: "Upload a valid Image"
-                });
-                
-                
-            }
-            
-            
-        } else {
-            this.setState({imageError: false})
-                reader.onloadend = () => {
-                    this.setState({
-                        file: file,
-                        imagePreviewUrl: reader.result
-                    });
-                }
-            }
-
-        reader.readAsDataURL(file)
-    }
-
     render() {
-        let {imagePreviewUrl} = this.state;
-            let imagePreview = null;
-            if (imagePreviewUrl) {
-            imagePreview = (<img src={imagePreviewUrl} className="imagePreview"/>);
-            } 
         return (
 
             <div className="container mx-auto row">
@@ -109,28 +52,18 @@ class CreateProduct extends Component {
             }
 
                 <div className="col-md-8 offset-2 mb-3 mt-4" id="profile">
-                 {/* Error Message */}
-                { this.state.errormessage != null && this.state.errormessage.length > 0 ? 
-                    <div className="alert alert-warning" role="alert" style={{position:'fixed', top: '70px' , right: '10px', zIndex:'4'}}>
-                        {this.state.errormessage}
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    </div>
-                    :   <span></span>
-                }
-
-                    <form onSubmit={this.handleSubmit} id="createproduct"> 
+                    <form onSubmit={this.handleSubmit} id="addpackage"> 
                     
                             <div className="card">
                                 <div className="card-header bg-medium font-weight-bold text-dark">
-                                    ADD NEW PRODUCT
+                                    ADD NEW PACKAGE
                     </div>
                     
                                 <div className="card-body">
 
                             <div className="row">
                                 <div className="col-md-12">
+                                    {/* Error Message */}
                                     { this.state.errormessage != null && this.state.errormessage.length > 0 ? 
                                         <div className="alert alert-warning" role="alert">{this.state.errormessage}
                                         <button type="button" className="close" data-dismiss="alert" aria-label="Close">
@@ -140,19 +73,26 @@ class CreateProduct extends Component {
                                         : 
                                         <span></span>
                                         }
-
-                                    {this.state.imageError !== false ?
-                                        <div className="alert alert-warning"> { this.state.imageError } </div>
-                                        : <span></span> }
                                 </div>
                             </div>
                                 <div className="row">
 
+                                <div className="col-md-12 mb-1">
+                                        <div className="form-group">
+                                        <select onChange={this.handleInputChange} name="type" id="type" className=" form-control form-select form-select-sm">
+                                                    <option value="" selected disabled>--Select&nbsp;Product&nbsp;--</option>
+                                                    <option value="Accissebs">Accissebs</option>
+                                                    <option value="SYSBANKER EE">SYSBANKER EE</option>
+                                                    <option value="Mira HPro">Mira HPro</option>
+                                                </select>
+                                        </div>
+                                    </div>
+
                                     <div className="col-md-12 mb-1">
                                         <div className="form-group">
-                                            <label htmlFor="" className="sr-only">Product Name</label>
+                                            <label htmlFor="" className="sr-only">Package Name</label>
                                             <input type="text" className="form-control form-control-sm" name="name"
-                                                id="name" placeholder="Product Name" 
+                                                id="name" placeholder="Package Name" 
                                                 value={this.state.name}
                                                 onChange={this.handleInputChange}/>
                                         </div>
@@ -162,30 +102,10 @@ class CreateProduct extends Component {
                                         <div className="form-group">
                                             <label htmlFor="" className="sr-only">Product Description</label>
                                             <textarea type="text" className="form-control form-control-sm" name="description"
-                                                id="description" placeholder="Product Description"
+                                                id="description" placeholder="Package Description"
                                                 value={this.state.description}
                                                 onChange={this.handleInputChange} />
                                         </div>
-                                    </div>
-
-                                    <div className="col-md-12 mb-1"> 
-                                    {this.state.imageError !== false ? 
-                                        <div className="other_files mb-2">
-                                            <i className="fa fa-trash" onClick={(e) => this.removeOtherImage(e)}></i>
-                                            {this.state.file.name}
-                                        </div>
-                                        :
-                                        <div className="imgPreview mb-2">
-                                            <i className="fa fa-trash" onClick={(e) => this.removeImage(e)}></i>
-                                                {imagePreview}
-                                            </div>
-                                       }
-                                        <div className="form-group">
-                                            <label htmlFor="" >Upload an Image</label> <br/>
-                                            <input type="file" className="form-file form-file-sm" name="image"
-                                                id="image" placeholder="" 
-                                                onChange={(e)=>this.handleImageChange(e)} />
-                                        </div>    
                                     </div>
 
                                 </div>
@@ -218,4 +138,4 @@ class CreateProduct extends Component {
         )
     }
 }
-export default withContext(CreateProduct);
+export default withContext(addpackage);

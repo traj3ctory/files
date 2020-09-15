@@ -1,85 +1,25 @@
 import React, { Component } from 'react';
-<<<<<<< HEAD
-import { withContext } from '../../common/context';
-=======
 import { HTTPURL } from '../../common/global_constant';
 import {withContext} from '../../common/context';
->>>>>>> 11d901d09664726fa781cfbbbafe1202ba2daa87
+import { Link } from 'react-router-dom';
 
 class TicketList extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            ...props,
+            currentPage: 1,
+            numberPerPage: 10,
             ticket: [],
-<<<<<<< HEAD
-            tickets: [
-                {
-                    "ticketid": 1,
-                    "Date": "2020-08-17",
-                    "client_name": "John Doe",
-                    "email": "John@gmail.com",
-                    "ticket_type": "Complaint",
-                    "message": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducires...!",
-                    "status": "Approved"
-                },
-                {
-                    "ticketid": 2,
-                    "Date": "2020-08-17",
-                    "client_name": "Stone Walker",
-                    "email": "Stone@gmail.com",
-                    "ticket_type": "Enquiry",
-                    "message": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducires...!",
-                    "status": "Cancelled"
-                },
-                {
-                    "ticketid": 3,
-                    "Date": "2020-08-17",
-                    "client_name": "Jane Doe",
-                    "email": "Jane@gmail.com",
-                    "ticket_type": "Suggestion",
-                    "message": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducires...!",
-                    "status": "Pending"
-                }
-
-            ]
-        }
-    }
-    componentDidMount() {
-=======
             id: 1,
-            tickets : [
-                // {
-                //     "ticketid" : 1,
-                //     "Date" : "2020-08-17" ,
-                //     "client_name" : "John Doe",
-                //     "email" : "John@gmail.com",
-                //     "type" : "Complaint",
-                //     "message" : "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducires...!",
-                //     "ticketstatus" : "Approved"
-                // }, 
-                // {
-                //     "ticketid" : 2,
-                //     "Date" : "2020-08-17" ,
-                //     "client_name" : "Stone Walker",
-                //     "email" : "Stone@gmail.com",
-                //     "type" : "Enquiry",
-                //     "message" : "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducires...!",
-                //     "ticketstatus" : "Cancelled"
-                // }, 
-                // {
-                //     "ticketid" : 3,
-                //     "Date" : "2020-08-17" ,
-                //     "client_name" : "Jane Doe",
-                //     "email" : "Jane@gmail.com",
-                //     "type" : "Suggestion",
-                //     "message" : "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducires...!",
-                //     "ticketstatus" : "Pending"
-                // }
-                
-            ]
+            tickets : [],
+            currentList: []
         }
     }
+
+
     componentDidMount(){
+        console.log(this.state,"props")
         const headers = new Headers();
         headers.append('API-KEY','97899c-7d0420-1273f0-901d29-84e2f8');
         fetch(HTTPURL + 'ticket/?userid=5f3e930330e28', {
@@ -87,9 +27,17 @@ class TicketList extends Component {
             headers: headers
         })
         .then(response => response.json())
-        .then(data => this.setState({tickets: data.data}));
+        .then(data => {
+            // let value = data.data
+            // //Get current list
+            // const indexOfLastPage = this.state.currentPage * this.state.numberPerPage;
+            // const indexOfFirstPage = indexOfLastPage - this.state.numberPerPage
+            // const currentList = value.slice(indexOfFirstPage, indexOfLastPage)
+            // console.log(currentList,"data data")
+            this.setState({tickets: data.data})
+            // this.setState({currentList: currentList})
+        });
 
->>>>>>> 11d901d09664726fa781cfbbbafe1202ba2daa87
         let ticket = []
         console.log('changed successfully!', ticket)
         for (let i = 0; i < this.state.tickets.length; i++) {
@@ -97,44 +45,44 @@ class TicketList extends Component {
             ticket.push(this.state.tickets[i])
             this.setState({ ticket: ticket });
         }
-    }
-    // $(function(){
-    //     $(".dropdown-menu").on('click', 'a', function(){
-    //         $(this).parents('.dropdown').find('button').text($(this).text());
-    //     });
-    //  });
-<<<<<<< HEAD
-    changeStatus(e, ticket) {
 
-        const tickets = this.state.tickets.map(item => {
-            console.log(e.target.value);
-            if (item.ticketid === ticket.ticketid) item.status = e.target.value;
-=======
+    }
+
+    handleViewMore = e => {
+         this.state.viewmore(e)
+        this.props.history.push('/viewticket');
+    }
+    // handleRoute = e => {
+    //      // Get Ticket by ID
+    //     const headers = new Headers();
+    //     headers.append('API-KEY','97899c-7d0420-1273f0-901d29-84e2f8');
+
+    //         let ticketid = e.target.attributes.value.value
+    //         // let ticketid = "5f4509c0c26d1"
+    //         let userid = "5f3e930330e28"
+
+    //     fetch(HTTPURL +`ticket/getticket?userid=${userid}&ticketid=${ticketid}`, {
+    //         method: 'GET',
+    //         headers: headers
+    //     })
+    //     .then(response => response.json())
+    //     .then(data => console.log(data.data, "data"))
+    //     this.props.history.push(`/viewticket/${ticketid}`);
+    // }
+    
      changeStatus(e,ticket) {
         
-        // document.querySelectorAll(".nav-item").forEach(item => {
-        //             item.addEventListener("click", () => {
-        //                 document.querySelector('#sidebar').classList.toggle('active');
-        //                 document.querySelector('.overlay').classList.toggle('active');
-        //             })
-
 
         const tickets = this.state.tickets.map(item=>{ 
             console.log(e.target.value);
             if(item.ticketid == ticket.ticketid) item.ticketstatus  = e.target.value;
->>>>>>> 11d901d09664726fa781cfbbbafe1202ba2daa87
             return item;
         })
 
-        this.setState({ tickets });
-        // let dropdown = document.getElementsByClassName("dropdown-menu");
-        // let element = []
-        // for (let i = 0; i < dropdown[0].childNodes.length; i++) {
-        //      element.push(dropdown[0].childNodes[i])
-        // }
-
-    }
-    render() {
+        this.setState({tickets});
+        
+     }
+     render() {
 
         return (
             <div className="container">
@@ -143,15 +91,15 @@ class TicketList extends Component {
                     <div className="col-md-12 mb-3" id="profile">
                         <form action="">
                             <div className="card home-chart">
-                                <div className="card-header text-white">
-                                    Ticket List
+                                <div className="card-header bg-medium font-weight-bold text-dark">
+                                    TICKET LIST
                 </div>
                                 <div className="card-body">
 
                                     <div id='table' className="card pt-2 mt-3 justify-content-center shadow px-2">
                                         <div className="table-responsive">
                                             <table
-                                                className="table table-hover table-bordered table-sm text-center align-middle mb-0 text-white home-chart">
+                                                className="table table-hover table-bordered table-sm text-center align-middle mb-0 text-dark home-chart">
                                                 {/* <caption>Hello World!</caption> */}
                                                 <thead>
                                                     <tr>
@@ -166,44 +114,6 @@ class TicketList extends Component {
                                                     </tr>
 
                                                 </thead>
-<<<<<<< HEAD
-                                                <tbody>
-                                                    {this.state.tickets.map(ticket => {
-                                                        return (
-                                                            <tr>
-                                                                <td>
-                                                                    {ticket.ticketid}
-                                                                </td>
-                                                                <td>
-                                                                    {ticket.Date}
-                                                                </td>
-                                                                <td>
-                                                                    {ticket.client_name}
-                                                                </td>
-                                                                <td>
-                                                                    {ticket.email}
-                                                                </td>
-                                                                <td>
-                                                                    {ticket.ticket_type}
-                                                                </td>
-                                                                <td>
-                                                                    {ticket.message}
-                                                                </td>
-                                                                <td>
-                                                                    <select className="custom-select btn btn-sm btn-default" onChange={(e) => this.changeStatus(e, ticket)}>
-                                                                        <option value="" selected > {ticket.status}</option>
-                                                                        <option className="btn btn-sm btn-success" value="approved">Approved</option>
-                                                                        <option className="btn btn-sm btn-danger" value="cancelled">Cancelled</option>
-                                                                        <option className="btn btn-sm btn-warning" value="pending">Pending</option>
-                                                                    </select>
-                                                                </td>
-                                                                <td className="align-middle"><i className="fas fa-eye" data-toggle="modal"
-                                                                    data-target="#viewTicket"></i></td>
-                                                            </tr>
-                                                        )
-                                                    })
-                                                    }
-=======
                                                 <tbody> 
                                                     
                                                 {this.state.tickets.map( ticket => {
@@ -216,7 +126,7 @@ class TicketList extends Component {
                                                             <td>
                                                                 {ticket.createdat}
                                                             </td>
-                                                            <td>
+                                                            <td  onClick={this.handleRoute}>
                                                                 {ticket.client_name}
                                                             </td>
                                                             <td>
@@ -242,96 +152,15 @@ class TicketList extends Component {
                                                                     Pending</option>
                                                             </select>
                                                             </td>
-                                                            <td className="align-middle"><i className="fas fa-eye" data-toggle="modal"
-                                                            data-target="#viewTicket"></i></td>
+                                                            <td className="align-middle" style={{cursor:"pointer"}}>
+                                                                <Link onClick={this.handleViewMore}>
+                                                    <span class="badge px-3 py-2 badge-primary" value={ticket.id} style={{cursor:"pointer"}}>View</span>
+                                                                </Link>
+                                                            </td>
                                                         </tr>
                                                      )
                                                     })  
-                                                }  
->>>>>>> 11d901d09664726fa781cfbbbafe1202ba2daa87
-
-
-
-                                                    {/* 
-                                                    <tr>
-                                                        <td>1</td>
-                                                        <td>2020&nbsp;-&nbsp;08&nbsp;-&nbsp;17&nbsp;/&nbsp;09:15:56
-                                        </td>
-                                                        <td>John&nbsp;Doe</td>
-                                                        <td>john@mail.com</td>
-                                                        <td>Complaint</td>
-                                                        <td>Lorem ipsum dolor sit amet consectetur, adipisicing
-                                            elit. Ducires...!</td>
-                                            <td className="align-middle">
-                                                            
-                                                        <select className="custom-select btn btn-sm btn-default">
-                                                            <option value="" selected disabled>--Select&nbsp;Status&nbsp;--</option>
-                                                            <option className="btn btn-sm btn-success" value="approved">Approved</option>
-                                                            <option className="btn btn-sm btn-danger" value="cancelled">Cancelled</option>
-                                                            <option className="btn btn-sm btn-warning" value="pending">Pending</option>
-                                                        </select>
-                                                        </td>
-                                                        <td className="align-middle"><i className="fas fa-eye" data-toggle="modal"
-                                                            data-target="#viewTicket"></i></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2</td>
-                                                        <td>2020&nbsp;-&nbsp;08&nbsp;-&nbsp;17&nbsp;/&nbsp;09:15:56
-                                        </td>
-                                                        <td>doe&nbsp;jane</td>
-                                                        <td>doe@mail.com</td>
-                                                        <td>Enquiry</td>
-                                                        <td>Lorem ipsum dolor sit amet consectetur, adipisicing
-                                            elit. Ducires...!</td>
-                                            <td className="align-middle">
-                                            <select className="custom-select btn btn-sm btn-default">
-                                                <option value="" selected disabled>--Select&nbsp;Status&nbsp;--</option>
-                                                <option className="btn btn-sm btn-success" value="approved">Approved</option>
-                                                <option className="btn btn-sm btn-danger" value="cancelled">Cancelled</option>
-                                                <option className="btn btn-sm btn-warning" value="pending">Pending</option>
-                                            </select> */}
-                                                    {/* <div class="dropdown" >
-                                                <button onClick={this.changeStatus} id="active" name="active" class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    Active
-                                                </button>
-                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                    <a class="dropdown-item" name="active" id="active" href="#">Active</a>
-                                                    <a class="dropdown-item" name="inactive" id="inactive" href="#">Inactive</a>
-                                                </div>
-                                            </div> */}
-                                                    {/* </td>
-                                                        <td className="align-middle"><i className="fas fa-eye" data-toggle="modal"
-                                                            data-target="#viewTicket"></i></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>3</td>
-                                                        <td>2020&nbsp;-&nbsp;08&nbsp;-&nbsp;17&nbsp;/&nbsp;09:15:56
-                                        </td>
-                                                        <td>jane&nbsp;Doe</td>
-                                                        <td>jane@mail.com</td>
-                                                        <td>Suggestion</td>
-                                                        <td>Lorem ipsum dolor sit amet consectetur, adipisicing
-                                            elit. Ducires...!</td>
-                                            <td className="align-middle">
-                                            <select className="custom-select btn btn-sm btn-default">
-                                                <option value="" selected disabled>--Select&nbsp;Status&nbsp;--</option>
-                                                <option className="btn btn-sm btn-success" value="approved">Approved</option>
-                                                <option className="btn btn-sm btn-danger" value="cancelled">Cancelled</option>
-                                                <option className="btn btn-sm btn-warning" value="pending">Pending</option>
-                                            </select> */}
-                                                    {/* <button
-                                                                className="btn btn-sm btn-success d-none"><i
-                                                                    className="fas fa-check-double">Approved</i></button>
-                                                            <button
-                                                                className="btn btn-sm btn-danger d-none"><i
-                                                                    className="fas fa-times">Cancelled</i></button>
-                                                            <button className="btn btn-sm btn-warning"><i
-                                                                className="fas fa-comments">Pending</i></button> */}
-                                                    {/* </td>
-                                                        <td className="align-middle"><i className="fas fa-eye" data-toggle="modal"
-                                                           data-target="#viewTicket"></i></td>
-                                                    </tr>
-     */}
+                                                } 
                                                 </tbody>
                                             </table>
                                         </div>
@@ -344,7 +173,22 @@ class TicketList extends Component {
                         </form>
                     </div>
                 </div>
+                
 
+               <div className="row justify-content-center text-center">
+                <div class="pagination">
+                        <a href="#">&laquo;</a>
+                        <a href="#">1</a>
+                        <a class="active" href="#">2</a>
+                        <a href="#">3</a>
+                        <a href="#">4</a>
+                        <a href="#">5</a>
+                        <a href="#">6</a>
+                        <a href="#">&raquo;</a>
+                    </div> 
+               </div>
+                
+                        
                 <div className="overlay"></div>
 
                 <div className="modal fade" id="viewTicket" tabIndex="-1" role="dialog" aria-labelledby="viewTicketTitle"
