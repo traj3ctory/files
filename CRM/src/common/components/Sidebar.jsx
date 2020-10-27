@@ -1,114 +1,78 @@
 import React, { useState } from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
-import image from '../../assets/images/dammy.jpg'
+
+import { withContext } from '../context';
+import { clientMenu, adminMenu } from '../global_constant';
 
 const Sidebar = (props) => {
-
-    const [clientDropdownOpen, setClientDropdown] = useState('none');
-    const [ticketDropdownOpen, setTicketDropdown] = useState('none');
-
+    const { user } =  props;
+    
     const toggle2 = () => {
         //Link click remove sidebar
         document.querySelector('#sidebar').classList.remove('active');
         document.querySelector('#sidebar').classList.add('sidemenu');
         document.querySelector('.overlay').classList.remove('active');
     }
+    
+    const [menu, setMenu] = useState(user.role === 'admin' ? adminMenu : clientMenu);
 
+    const toggleDropdown =  (toggled) =>{;
+        const updated =  menu.map(item=>{
+            if(toggled == item) item.isActive = !item.isActive
+            return item;
+        });
+        setMenu(updated);
+    }
     return (
         <div>
-            <div className="sidemenu" id="sidebar">
-                <ul className="list-unstyled components">
-                    <div className="py-2 text-white text-center">
-                        {/* <img src="https://miratechnologiesng.com/img/icons/miraicon.png" alt="icon"
-                            width='35' />&nbsp;&nbsp;Hello World */}
-                        <img src={image} className="image_sidebar my-3" alt="" />
-                        <p className="image_name mb-0">Rhoda Stone</p>
-                    </div>
-                    <p className="mt-2 mb-2">MENU</p>
-                    <hr className="bg-white mb-0 mt-0" />
-                    <NavLink className={`dropdown-btn nav-item  ${props.location.pathname === "/" ? "active" : ""}`} to="dashboard" onClick={toggle2}>
-                        <li className="nav-item ">
-                            <i className="fa fa-tachometer-alt mr-1"></i>&nbsp;Dashboard
-                        </li>
-                    </NavLink>
-
-                    <div className="dropdown-btn nav-item" onClick={() => setClientDropdown((clientDropdownOpen === 'none') ? 'block' : 'none')}>
-                        <li className="nav-item">
-                            <i className="fa fa-user mr-1"></i>&nbsp;Client Corner&nbsp;<i
-                                className="fas fa-chevron-left fa-fw float-right"></i>
-                        </li>
-                    </div>
-                    <div className="dropdown-container" style={{ display: clientDropdownOpen }}>
-                        <NavLink className={`nav-item  ${props.location.pathname === "/" ? "active" : ""}`} to='/createClient' onClick={toggle2}>
-                            <li className="nav-item">
-                                <i className="fa fa-user-friends mr-1"></i>&nbsp;Add&nbsp;Client
-                        </li>
-                        </NavLink>
-                        <NavLink className={`nav-item  ${props.location.pathname === "/" ? "active" : ""}`} to='/viewClient' onClick={toggle2}>
-                            <li className="nav-item">
-                                <i className="fa fa-user-friends mr-1"></i>&nbsp;View&nbsp;Client
-                        </li>
-                        </NavLink>
-                        <NavLink className={`nav-item  ${props.location.pathname === "/" ? "active" : ""}`} to='/listClient' onClick={toggle2}>
-                            <li className="nav-item">
-                                <i className="fa fa-list-ol mr-1"></i>&nbsp;List&nbsp;Client
-                        </li>
-                        </NavLink>
-                    </div>
-
-                    <NavLink className={`dropdown-btn nav-item  ${props.location.pathname === "/" ? "active" : ""}`} to='/creatUser' onClick={toggle2}>
-                        <li className="nav-item">
-                            <i className="fa fa-user-plus mr-1"></i>&nbsp;Create&nbsp;User
-                        </li>
-                    </NavLink>
-
-                    <div className="dropdown-btn nav-item" onClick={() => setTicketDropdown((ticketDropdownOpen === 'none') ? 'block' : 'none')}>
-                        <li className="nav-item ">
-                            <i className="fa fa-ticket-alt mr-1"></i>&nbsp;Ticket&nbsp;<i
-                                className="fas fa-chevron-left fa-fw float-right"></i>
-                        </li>
-                    </div>
-                    <div className="dropdown-container" style={{ display: ticketDropdownOpen }}>
-                        <NavLink className={`nav-item  ${props.location.pathname === "/" ? "active" : ""}`} to='/ticketList' onClick={toggle2}>
-                            <li className="nav-item">
-                                <i className="fa fa-list-ul mr-1"></i>&nbsp;Ticket&nbsp;List
-                        </li>
-                        </NavLink>
-                        <NavLink className={`nav-item  ${props.location.pathname === "/" ? "active" : ""}`} to='/ticketChat' onClick={toggle2}>
-                            <li className="nav-item">
-                                <i className="fa fa-list-ul mr-1"></i>&nbsp;Ticket&nbsp;Chat
-                        </li>
-                        </NavLink>
-                        <NavLink className={`nav-item  ${props.location.pathname === "/" ? "active" : ""}`} to='/ticketChat' onClick={toggle2}>
-                            <li className="nav-item">
-                                <i className="fa fa-list-ul"></i>&nbsp;Ticket&nbsp;Chat&nbsp;<i
-                                    className="fas fa-chevron-left fa-fw float-right"></i>
-                            </li>
-                        </NavLink>
-                        <NavLink className={`nav-item  ${props.location.pathname === "/" ? "active" : ""}`} to='a' onClick={toggle2}>
-                            <li className="nav-item">
-                                <i className="fas fa-ticket-alt fa-fw mr-1"></i>&nbsp;View&nbsp;Ticket
-                        </li>
-                        </NavLink>
-                    </div>
-
-                    <p className="mt-4 mb-2" >ACCOUNT</p>
-                    <hr className="bg-white mt-0 mb-0" />
-                    <NavLink className={`dropdown-btn nav-item  ${props.location.pathname === "/" ? "active" : ""}`} to="profile" onClick={toggle2}>
-                        <li className="nav-item">
-                            <i className="fas fa-user fa-fw mr-1"></i>&nbsp;Profile
-                        </li>
-                    </NavLink>
-                    <NavLink className={`dropdown-btn nav-item  ${props.location.pathname === "/" ? "active" : ""}`} to='/changePassword' onClick={toggle2}>
-                        <li className="nav-item">
-                            <i className="fas fa-key fa-fw mr-1"></i>&nbsp;Change&nbsp;Password
-                        </li>
-                    </NavLink>
-                    <NavLink className={`nav-item  ${props.location.pathname === "/" ? "active" : ""}`} className="text-center" to='/login' onClick={toggle2}>
-                        <p className=" last_" >
-                            <i className="fas fa-power-off text-danger mr-1">&nbsp;<b
-                                style={{ color: "white" }}>&nbsp;Logout</b></i>
-                        </p>
+            <div className="sidemenu pt-5" id="sidebar">
+                <ul className="list-unstyled components pl-2">
+                    {
+                        menu.map((item,i)=>{
+                            return(
+                                item.isDivider ? 
+                               
+                                <div className="nav-item px-0" key={i}>
+                                    <li className="nav-item font-weight-bold text-uppercase mt-2"><b>{ item.name ? item.name : '' }</b></li>
+                                    <hr className="bg-white mt-0 mb-0" />
+                                </div> 
+                                : 
+                                item.sub && item.sub.length > 1 ? 
+                                    <div key={i}>
+                                        <div className="dropdown-btn nav-item" to={ item.route } onClick={()=>toggleDropdown(item)}>
+                                            <li className={`"nav-item  ${props.location.pathname === item.route ? "active" : ""}`}>
+                                                <i className={`${ item.icon } float-right pr-3 `}></i>&nbsp;{item.name }
+                                            </li>
+                                        </div> 
+                                        <div className="dropdown-container" style={item.isActive ?  {display: 'block'} : { display : 'none'}}>
+                                            { item.sub.map((sub,i)=>{
+                                                    return(
+                                                        <NavLink key={i} className="nav-item" to={ sub.route } onClick={toggle2}>
+                                                            <li className={`nav-item ${props.location.pathname === sub.route ? "active" : ""}`}>
+                                                                <i className={`${ sub.icon } mr-1`}></i>{ sub.name }
+                                                            </li>
+                                                        </NavLink>
+                                                    );
+                                                }) 
+                                            }
+                                        </div> 
+                                    </div> 
+                                :
+                                <NavLink key={i} className="nav-item" to={ item.route } onClick={toggle2}>
+                                    <li className={`nav-item  text-white ${props.location.pathname === item.route ? "active" : ""}`}>
+                                        <i className={`${item.icon } float-right pr-3 `}></i>{item.name }
+                                    </li>
+                                </NavLink>
+                            );
+                        })
+                    }
+                    <NavLink className={`nav-item  ${props.location.pathname === "/" ? "active" : ""}`} className="text-center" to='login' onClick={ props.logout }> 
+                        <div className="logout">
+                            <p className=" last_ mb-0" >
+                                <span className="text-left" style={{ color: "white", fontSize:"14px" }}>Logout</span>
+                                <i className="fas fa-power-off text-danger float-right pr-3 pt-1"></i>
+                            </p>
+                        </div>
                     </NavLink>
                 </ul>
             </div>
@@ -117,4 +81,4 @@ const Sidebar = (props) => {
     )
 }
 
-export default withRouter(Sidebar);
+export default withRouter(withContext(Sidebar));
