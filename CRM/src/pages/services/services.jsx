@@ -39,6 +39,8 @@ class Services extends Component {
   }
 
   async getServices() {
+    this.state.showLoader();
+
     const headers = new Headers();
     headers.append("API-KEY", APIKEY);
     const res = await fetch(
@@ -48,6 +50,8 @@ class Services extends Component {
         headers: headers,
       }
     ).then((response) => response.json());
+    this.state.hideLoader();
+
     if (res["status"]) {
       this.setState({ totalLists: res['data'] });
     }
@@ -230,7 +234,7 @@ class Services extends Component {
           <div className="col-md-12 col-sm-12 box1 mb-3" id="profile">
             {this.state.totalLists.length === 0 ? (
               <div className="alert alert-warning mt-5" role="alert">
-                <h6 className="text-center">No ticket records!</h6>
+                <h6 className="text-center">Unable to retrieve services no records found!</h6>
               </div>
             ) : (
               <div>
@@ -424,6 +428,26 @@ class Services extends Component {
                       <div className="card-body">
                         <div className="row">
 
+
+                        <div className="col-md-12 mb-1">
+                            <div className="form-group">
+                              <label htmlFor="" className="sr-only">
+                                Code
+                            </label>
+                              <input
+                                type="text"
+                                className="form-control form-control-sm"
+                                name="editcode"
+                                id="editcode"
+                                placeholder="Code"
+                                value={this.state.editcode}
+                                onChange={this.handleInputChange}
+                                disabled
+                              />
+                            </div>
+                          </div>
+
+                          
                         <div className="col-md-12 mb-1">
                             <div className="form-group">
                               <label htmlFor="" className="sr-only">
@@ -442,22 +466,7 @@ class Services extends Component {
                           </div>
 
                           
-                          <div className="col-md-12 mb-1">
-                            <div className="form-group">
-                              <label htmlFor="" className="sr-only">
-                                Code
-                            </label>
-                              <input
-                                type="text"
-                                className="form-control form-control-sm"
-                                name="editcode"
-                                id="editcode"
-                                placeholder="Code"
-                                value={this.state.editcode}
-                                onChange={this.handleInputChange}
-                              />
-                            </div>
-                          </div>
+                          
 
                           
                           <div className="col-md-12 mb-1">

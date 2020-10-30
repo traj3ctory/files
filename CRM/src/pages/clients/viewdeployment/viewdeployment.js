@@ -117,7 +117,6 @@ class viewclientproduct extends Component {
             // modal.style.display = "none";
             // window.history.go("-1");
             this.props.history.goBack();
-            this.props.history.goBack();
           }else{
             this.setState({ loading: false });
             this.state.showAlert("danger", result.message)
@@ -131,7 +130,7 @@ class viewclientproduct extends Component {
     const headers = new Headers();
     headers.append("API-KEY", APIKEY);
     var formdata = new FormData();
-    formdata.append("clientproductid", this.props.location.pathname.split("/")[2]);
+    formdata.append("deploymentid", this.props.location.pathname.split("/")[2]);
     formdata.append("modules", this.state.modules.map(item=>item.id).toString() );
     formdata.append("cost", this.state.cost);
     formdata.append("userid", this.state.user.userid);
@@ -143,7 +142,7 @@ class viewclientproduct extends Component {
     formdata.append("trainingdate", this.state.trainingdate);
     formdata.append("deploymentdate", this.state.deploymentdate);
     formdata.append("remarks", this.state.remarks);
-    const res = await fetch(`${HTTPURL}clients/updateproduct`,{ headers,method : 'POST',body : formdata });
+    const res = await fetch(`${HTTPURL}deployment/update`,{ headers,method : 'POST',body : formdata });
     if(res['status']){
       this.closeModal('moduleModal');
     }
@@ -324,7 +323,7 @@ class viewclientproduct extends Component {
                       <th className="text-left bg-light py-2">Total</th>
                       <td></td>
                       <td></td>
-                      <td className="bg-light py-2">{this.state.cost}</td>
+                      <td className="bg-light py-2">&#8358;{this.state.cost}</td>
                     </tr>
                   </tfoot>
                 : <span></span>

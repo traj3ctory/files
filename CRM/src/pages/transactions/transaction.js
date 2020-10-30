@@ -43,7 +43,7 @@ class transaction extends Component {
       async getTransactions() {
         
         this.state.showLoader();
-
+        
         const headers = new Headers();
         headers.append("API-KEY", APIKEY);
         
@@ -56,15 +56,13 @@ class transaction extends Component {
             headers: headers,
           }
         ).then((response) => response.json());
-    
-        if (res["status"]) {
-          this.setState({ totalLists: res["data"] });
-          this.getPageNo();
-          
-          this.state.hideLoader();
-        }
-        
         this.state.hideLoader();
+        if (res["status"]) {
+          this.setState({ 
+            totalLists: res["data"].total,
+        });
+          this.getPageNo();
+        }
       }
     
       async getPageNo() {
@@ -82,7 +80,7 @@ class transaction extends Component {
         )
           .then((response) => response.json())
           .then((data) => {
-            this.setState({currentLists: data.data})
+            this.setState({currentLists: data.data.transactions})
           });
       }
     
@@ -104,7 +102,7 @@ class transaction extends Component {
         )
           .then((response) => response.json())
           .then((data) => {
-            this.setState({currentLists: data.data})
+            this.setState({currentLists: data.data.transactions})
           });
     
       };
@@ -125,7 +123,7 @@ class transaction extends Component {
         )
           .then((response) => response.json())
           .then((data) => {
-            this.setState({currentLists: data.data})
+            this.setState({currentLists: data.data.transactions})
           });
       };
     
@@ -144,7 +142,7 @@ class transaction extends Component {
               <div className="col font-card text-right">
                 <span className=" ">Total<br/> Transactions</span>
                 <br />
-                <span className="text-large">{this.state.totalLists.length}</span>
+                <span className="text-large">{this.state.totalLists}</span>
               </div>
             </div>
           </div>
@@ -193,10 +191,10 @@ class transaction extends Component {
         </div>
       </div>
         
-        
+      { (
         <div className="row">
         <div className="col-md-9 col-sm-12 box1 mb-3" id="profile">
-            {this.state.totalLists.length === 0 ? (
+            {!this.state.loaderActive && this.state.totalLists === 0 ?  (
               <div className="alert alert-warning mt-5" role="alert">
                 <h6 className="text-center">No transaction records!</h6>
               </div>
@@ -256,7 +254,7 @@ class transaction extends Component {
               <div className="row mt-5">
                 <div className="col-md-4">
                   <div className="form-group mt-1">
-                    {this.state.totalLists.length > 0 && (
+                    {this.state.totalLists > 0 && (
                       <select
                       onChange={(e) => {
                         this.getpageLimit(e.target.value);
@@ -453,7 +451,7 @@ class transaction extends Component {
           </div>
       
         </div>
-     
+      )}
       </div>
     );
   }

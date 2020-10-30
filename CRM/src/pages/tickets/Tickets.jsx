@@ -19,9 +19,12 @@ class Tickets extends Component {
       clients: [],
       currentPage: 1,
       numberPerPage: 10,
-      totalLists: this.props.tickets,
+      totalLists: [],
       pageNumbers: [],
       currentLists: [],
+      tickets: [],
+      showmodal: true,
+      selectedTicket: {},
     };
   }
 
@@ -39,6 +42,7 @@ class Tickets extends Component {
   };
 
   componentDidMount() {
+    this.state.showLoader();
     this.props.user.role === "admin" && this.getClients();
     this.getTickets();
   }
@@ -69,6 +73,7 @@ class Tickets extends Component {
   }
 
   async getTickets() {
+
     const headers = new Headers();
     headers.append("API-KEY", APIKEY);
     const res = await fetch(
@@ -80,8 +85,10 @@ class Tickets extends Component {
     ).then((response) => response.json());
     if (res["status"]) {
       let tickets = res["data"];
-      this.setState({ tickets });
+      this.setState({tickets , totalLists: res["data"].total });
       this.getPageNo();
+      
+      this.state.hideLoader();
     }
   }
 
@@ -100,7 +107,7 @@ class Tickets extends Component {
     )
       .then((response) => response.json())
       .then((data) => {
-        this.setState({currentLists: data.data})
+        this.setState({currentLists: data.data["tickets"]})
       });
   }
 
@@ -122,7 +129,7 @@ class Tickets extends Component {
     )
       .then((response) => response.json())
       .then((data) => {
-        this.setState({currentLists: data.data})
+        this.setState({currentLists: data.data["tickets"]})
       });
 
   };
@@ -157,6 +164,7 @@ class Tickets extends Component {
     });
 
     this.setState({ tickets });
+
   }
 
   async updateTicketStatus(ticketid, status) {
@@ -171,7 +179,11 @@ class Tickets extends Component {
       method: "POST",
       headers: headers,
       body: form,
-    }).then((response) => response.json());
+    }).then((response) => response.json())
+    .then(data => {
+      this.getTickets();
+      this.state.showAlert("success", data.message)
+    })
   }
 
   handleSearch = async (e) => {
@@ -191,10 +203,44 @@ class Tickets extends Component {
     )
       .then((response) => response.json())
       .then((data) => {
-        if (data.status) this.setState({ tickets: data.data });
+        if (data.status) this.setState({ tickets: data.data.tickets });
       });
   };
 
+  closedeleteModal() {
+    let modal = document.getElementById("deleteModal");
+    modal.style.display = "none";
+  }
+
+  async showdeleteModal(ticketid) {
+    const selectedTicket = this.state.tickets.tickets.find(item => item.id === ticketid);
+    await this.setState({ selectedTicket });
+    let modal = document.getElementById("deleteModal");
+    modal.style.display = "block";
+  }
+
+  async deleteModal() {
+    this.setState({ loading: true });
+    const headers = new Headers();
+    headers.append("API-KEY", APIKEY);
+
+    const res = await fetch(HTTPURL + `ticket/delete?userid=${this.state.user.userid}&ticketid=${this.state.selectedTicket.id}`, {
+      method: "GET",
+      headers: headers,
+    }).then((response) => response.json())
+    this.setState({ loading: false });
+    if (res.status) {
+      this.getTickets();
+      this.state.showAlert('success', "Deleted Successfully!");
+      let modal = document.getElementById("deleteModal");
+      modal.style.display = "none";
+    }
+    else{
+      this.state.showAlert('danger', res.message);
+    }
+    this.setState({ updateData: true });
+    return res;
+  }
 
 
   render() {
@@ -206,11 +252,12 @@ class Tickets extends Component {
           </div>
 
           <div className="col-md-9 col-sm-12 box1 mb-3" id="profile">
-            {this.state.tickets.length === 0 ? (
+            {  !this.state.loaderActive && this.state.totalLists === 0 ? (
               <div className="alert alert-warning mt-5" role="alert">
                 <h6 className="text-center">No ticket records!</h6>
               </div>
             ) : (
+              !this.state.loaderActive && 
               <div>
                 <div id="table" className="card pt-2 mt-3 justify-content-center shadow px-2">
                   <div className="table-responsive">
@@ -293,6 +340,13 @@ class Tickets extends Component {
                                     <i className="fas fa-eye fa-fw "></i>
                                   </span>
                                 </Link>
+                                
+                              <span                                     
+                              className="btn btn-sm ml-2 btn-danger"
+                              style={{ cursor: "pointer" }}
+                              onClick={() => this.showdeleteModal(ticket.id)}>
+                                <i className="fa fa-trash  text-white"></i>
+                              </span>
                               </td>
                             </tr>
                           );
@@ -308,7 +362,7 @@ class Tickets extends Component {
               <div className="row mt-5">
                 <div className="col-md-4">
                   <div className="form-group mt-1">
-                    {this.state.tickets.length > 0 && (
+                    {this.state.totalLists > 0 && (
                       <select
                         onChange={(e) => {
                           this.getpageLimit(e.target.value);
@@ -335,7 +389,7 @@ class Tickets extends Component {
                     <Pagination
                       numberPerPage={this.state.numberPerPage}
                       currentPage={this.state.currentPage}
-                      totalLists={this.state.tickets}
+                      totalLists={this.state.totalLists}
                       pageNumbers={this.state.pageNumbers}
                       currentLists={this.state.currentLists}
                       update={this.update}
@@ -491,6 +545,46 @@ class Tickets extends Component {
             </div>
           </div>
         </div>
+        
+            {/* Delete Module Info */}
+            {this.state.showmodal ?
+              <div id="deleteModal" className="modal">
+                {/* Modal content  */}
+                <div className="modal-content modal-del text-center p-5">
+                  {/* <div className="delete-icon">
+                          &times;
+                      </div> */}
+                  <i className="fa fa-exclamation-triangle fa-3x dark-red mb-2" aria-hidden="true"></i>
+                  <h3>Are you sure?</h3>
+                  <p> Do you really want to delete this ticket?</p>
+                  <div className="row">
+                    <div className="col-md-6">
+                      <button onClick={this.closedeleteModal} className="btn-block btn btn-outline-secondary mb-2">Cancel</button>
+                    </div>
+                    <div className="col-md-6">
+                      {this.state.loading ? (
+                        <button
+                          type="submit"
+                          className="btn btn-block btn-danger"
+                        >
+                          <div
+                            className="spinner-border "
+                            role="status"
+                            id="loader"
+                          >
+                            <span className="sr-only">Loading...</span>
+                          </div>
+                        </button>
+                      ) : (
+                          <button onClick={() => this.deleteModal(this.state.selectedTicket.id)} className="btn btn-danger btn-block">Delete</button>
+                        )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              :
+              <span></span>
+            }
       </div>
     );
   }

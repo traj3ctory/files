@@ -53,13 +53,6 @@ class viewcourse extends Component {
     }
   
      showdeleteModal(courseid) {
-      const selectedCourse = this.state.courses.find(
-        (course) => course.id === courseid
-      );
-      this.setState({
-        courseid: selectedCourse.id
-      });
-
       let modal = document.getElementById("suspendModal")
       modal.style.display = "block";
     }
