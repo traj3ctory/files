@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-import { HTTPURL, APIKEY, FILEURL } from "../../../common/global_constant";
+import { HTTPURL, APIKEY } from "../../../common/global_constant";
 import { withContext } from "../../../common/context";
 import avatar from "../../../assets/images/addstudent.png";
+
+const FILEURL = "https://www.miratechnologies.com.ng/training-portal/public";
 
 
 class viewcourse extends Component {
@@ -101,11 +103,8 @@ class viewcourse extends Component {
                   ?<img
                   src={FILEURL + this.state.imageurl }
                   alt=""
-                  className="image_sidebar"
-                  height="170px"
-                  width="170px"
-                  style={{ marginTop: "-80px" }}
-                />
+                  className="card-img-top"
+                  />
                 :<img
                 src={avatar}
                 alt=""
