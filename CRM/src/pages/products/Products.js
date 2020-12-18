@@ -12,13 +12,26 @@ class Products extends Component {
             ...this.props,
             showmodal: true,
             id: '',
-            updateData: false
+            updateData: false,
+            isloading: true,
         }
     }
 
    
   componentDidUpdate(){
     if(this.state.updateData) {return this.state.products}
+  }
+componentDidMount(){
+    this.getProducts();
+}
+  async getProducts()
+  {
+    this.state.showLoader();
+    const headers = new Headers();
+    headers.append('API-KEY', APIKEY);
+    const res = await fetch(HTTPURL + `product?userid=${ this.state.user.userid }`, { method: 'GET', headers: headers}).then(response => response.json())
+    this.state.hideLoader();
+    if(res['status']) this.setState({ products: res .data , isloading: false})
   }
 
     showDeleteModal(e) {
@@ -41,7 +54,7 @@ class Products extends Component {
             .then(async data => {
                 if(data.status === true) {
                     this.state.showAlert("success", data.message);
-                    await this.state.getProducts();
+                    await this.getProducts();
                     let modal = document.getElementById("myModal")
                     modal.style.display = "none";
                     this.props.history.push('/products');
@@ -80,6 +93,7 @@ class Products extends Component {
                     </div>
                 }
    
+   {!this.state.isloading &&
                     <div>
                         {this.state.products.length === 0 
                         ? <div className="col-md-12 w-100 alert alert-warning mt-5" role="alert">
@@ -127,6 +141,8 @@ class Products extends Component {
                     }
                     </div>
 
+
+   }
                 {this.state.showmodal ?
                     <div id="myModal" className="modal">
                         {/* Modal content  */}

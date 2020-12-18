@@ -25,6 +25,7 @@ class Services extends Component {
       edittitle: '',
       editcode: '',
       editcost: '',
+      isloading: true,
     };
   }
   
@@ -34,12 +35,13 @@ class Services extends Component {
     this.setState({ [name]: value, errormessage: "" });
   };
 
-  componentDidMount() {
-    this.getServices();
+  async componentDidMount() {
+    this.state.showLoader();
+    await this.getServices();
+    this.state.hideLoader();
   }
 
   async getServices() {
-    this.state.showLoader();
 
     const headers = new Headers();
     headers.append("API-KEY", APIKEY);
@@ -53,7 +55,8 @@ class Services extends Component {
     this.state.hideLoader();
 
     if (res["status"]) {
-      this.setState({ totalLists: res['data'] });
+      this.setState({ totalLists: res['data'], 
+      isloading: false });
     }
   }
 
@@ -213,6 +216,9 @@ class Services extends Component {
     this.state.currentLists = currentLists;
 
     return (
+      
+      <div>
+        {!this.state.isloading &&
       <div className="container-fluid px-5">
         <div className="row mt-4">
           <div className="w-100 text-center">
@@ -238,15 +244,12 @@ class Services extends Component {
               </div>
             ) : (
               <div>
-                <div
-                  id="table"
-                  className="card pt-2 mt-3 justify-content-center shadow px-2"
-                >
-                  <div className="table-responsive">
-                    <table
-                      className="table table-hover table-bordered table-sm text-center align-middle mb-0 text-dark home-chart"
-                      id="myTable"
-                    >
+               <div id="table" className=" mt-3 justify-content-center shadow">
+        <div className="table-responsive">
+          <table
+            className="table table-hover table-bordered table-md text-center align-middle mb-0 text-dark home-chart"
+            id="myTable"
+          >
                       {/* <caption>Hello World!</caption> */}
                       <thead>
                         <tr>
@@ -271,7 +274,7 @@ class Services extends Component {
                               <td
                                 style={{ minWidth: "100px", maxWidth: "100px" }}
                               >
-                                {service.cost}
+                                {service.cost.toLocaleString()}
                               </td>
                               <td
                                 className="align-middle"
@@ -574,6 +577,9 @@ class Services extends Component {
               <span></span>
             }
          </div>
+      
+      </div>
+          }
       </div>
     );
   }

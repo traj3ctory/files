@@ -25,6 +25,7 @@ class Tickets extends Component {
       totalLists: [],
       pageNumbers: [],
       currentLists: [],
+      isloading: true,
     };
   }
 
@@ -33,20 +34,25 @@ class Tickets extends Component {
     this.setState({ [name]: value });
   };
 
-  componentDidMount() {
-    this.props.user.role === "admin" && this.getCourses();
+ async  componentDidMount() {
+    this.state.showLoader();
+    this.props.user.role === "admin" && await this.getCourses();
+    this.state.hideLoader();
   }
 
   async getCourses() {
+
     const headers = new Headers();
     headers.append("API-KEY", APIKEY);
     const res = await fetch(HTTPURL + `training/listcourses`, {
       headers: headers,
     }).then((response) => response.json());
     if (res["status"]) {
-      this.setState({ courses: res["data"], totalLists: res["data"] });
+      this.setState({ courses: res["data"], totalLists: res["data"].length, 
+      isloading: false});
       this.getPageNo();
     }
+    
   }
 
   async getPageNo() {
@@ -170,7 +176,9 @@ class Tickets extends Component {
           <div className="w-100 text-center">
             <h3>Courses </h3>
           </div>
-
+          {!this.state.isloading && 
+          <div>
+            
           {user.role === "admin"
          ? <div className="row mt-4 d-flex justify-content-end mb-3 mr-2" >
               <Link to="/addcourse">
@@ -185,17 +193,19 @@ class Tickets extends Component {
         }
 
           <div className="col-md-12 col-sm-12 box1 mb-3" id="profile">
-            {this.state.totalLists.length === 0 ? (
+            { this.state.totalLists === 0 ? (
               <div className="alert alert-warning mt-5" role="alert">
                 <h6 className="text-center">No course records!</h6>
               </div>
             ) : (
               <div>
-                <div id="table" className="card pt-2 mt-3 justify-content-center shadow px-2">
+                <div id="table" className="mt-3 justify-content-center shadow ">
                   <div className="table-responsive">
                     <table
-                      className="table table-hover table-bordered table-sm text-center align-middle mb-0 text-dark home-chart"
+                      data-show-export="true"
+                      className="table table-hover table-bordered table-md text-center align-middle mb-0 text-dark home-chart"
                       id="myTable"
+            
                     >
                       {/* <caption>Hello World!</caption> */}
                       <thead>
@@ -253,7 +263,7 @@ class Tickets extends Component {
               <div className="row mt-5">
                 <div className="col-md-4">
                   <div className="form-group mt-1">
-                    {this.state.totalLists.length > 0 && (
+                    {this.state.totalLists > 0 && (
                       <select
                       onChange={(e) => {
                         this.getpageLimit(e.target.value);
@@ -447,7 +457,9 @@ class Tickets extends Component {
               <span></span>
             }
           </div>
-      </div>
+                 </div>
+            }
+            </div>
     );
   }
 }

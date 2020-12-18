@@ -12,6 +12,7 @@ class Clients extends Component {
             ...this.props,
             showmodal: true,
             loading: true,
+            isloading: true,
             clients: [],
             id: '',
             user_id: ''
@@ -20,7 +21,9 @@ class Clients extends Component {
     }
 
     async componentDidMount() {
+        this.state.showLoader();
         await this.getClients();
+        this.state.hideLoader();
     }
 
     getClient(businessname) {
@@ -40,7 +43,7 @@ class Clients extends Component {
             headers: headers
         }).then(response => response.json());
 
-        if (res['status']) this.setState({ clients: res['data'] })
+        if (res['status']) this.setState({ clients: res['data'] , isloading: false})
     }
 
     showdeleteModal(e) {
@@ -88,6 +91,7 @@ class Clients extends Component {
 
         return (
             <div className="container-fluid">
+                {!this.state.isloading &&
                 <div className="row d-flex align-items-center justify-content-center form">
 
                     <div className="col-md-6 ">
@@ -136,94 +140,9 @@ class Clients extends Component {
                     </div>
                 </div>
 
+                                    }
 
-
-
-                {/* <div className="col-md-12" >
-                                <div className="card-body">
-                                {!this.state.loading && this.state.clients.length === 0 ?
-                                <div className="card-body">
-                                    <div className="alert alert-warning" role="alert">
-                                        <h6 className="text-center">No client records!</h6>
-                                    </div>
-                                    </div>
-                                    :
-                                    !this.state.loading && <div id='table' className=" pt-2 justify-content-center shadow">
-                                        <div className="table-responsive">
-                                            <table className="table table-hover table-bordered table-sm text-center align-middle mb-0 text-dark home-chart">
-                                                <thead>
-                                                    <tr>
-                                                        <th><i className="fas fa-image"></i></th>
-                                                        <th>Name</th>
-                                                        <th>Email&nbsp;Address</th>
-                                                        <th>Telephone</th>
-                                                        <th>Company&nbsp;Name</th>
-                                                        <th>Actions</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                {this.state.clients.map( client => {
-                                                     return(
-                                                        <tr>
-                                                        <td className="align-middle">
-                                                            <img src={avatar} alt="" width="30" height="30" className="rounded-circle" /></td>
-                                                            <td>{client.lastname} {client.firstname} {client.othername}</td>
-                                                            
-                                                        <td>{client.email} </td>
-                                                            <td>{client.telephone} </td>
-                                                            <td>{client.businessname}</td>
-                                                        <td>
-                                                            <Link to={() => `/viewClient/${client.user_id}`} >
-                                                                <span className="badge px-3 py-2 m-2 badge-primary" value={client.id} style={{cursor:"pointer"}}>View</span>
-                                                            </Link>
-                                                            <Link onClick={() => this.showdeleteModal(client.user_id)}>
-                                                                <span className="badge px-3 py-2 badge-danger" id="myBtn" style={{cursor:"pointer"}}>Delete</span>
-                                                            </Link>
-                                                        </td>
-                            
-                                                    </tr>
-
-                                                     )}
-                                                )}
-
-
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                }
-                                </div>
-    
-                            
-                            </div>
-                    </div>
-    
-    
-               */}
-
-                {this.state.showmodal ?
-                    <div id="myModal" className="modal">
-                        {/* Modal content  */}
-                        <div className="modal-content text-center p-5">
-                            <i className="fa fa-exclamation-triangle fa-3x dark-red mb-2" aria-hidden="true"></i>
-                            <h3>Are you sure?</h3>
-                            <p> Do you really want to delete this file?</p>
-                            <div className="row">
-                                <div className="col-md-6 col-sm-6">
-                                    <button onClick={this.closeModal} className="btn-block btn btn-outline-secondary mb-2">Cancel</button>
-                                </div>
-                                <div className="col-md-6 col-sm-6">
-                                    <form id="deleteclient">
-                                        <button onClick={() => this.deleteModal(this.state.id)} className="btn btn-danger btn-block">Delete</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    :
-                    <span></span>
-                }
-
+            
 
 
             </div>

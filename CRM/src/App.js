@@ -5,6 +5,7 @@ import { HTTPURL,APIKEY } from "./common/global_constant";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./assets/css/rotating-card.css";
 
+
 import { Provider } from "./common/context";
 import { AdminPrivateRoute, PrivateRoute, UserPrivateRoute,NotLoggedInRoute } from './common/protected_route';
 
@@ -19,7 +20,7 @@ import Dashboard from "./pages/dashboard/dashboard";
 import ChangePassword from "./pages/change_password/ChangePassword";
 import Profile from "./pages/profile/Profile";
 
-import Tickets from "./pages/tickets/Tickets";
+import Tickets from "./pages/tickets/ticketlist/Tickets";
 import CreateTicket from "./pages/tickets/create_ticket/create_ticket";
 import ViewTicket from "./pages/tickets/viewticket/ViewTicket";
 
@@ -52,6 +53,7 @@ import ViewAdmin from "./pages/users/ViewAdmin/ViewAdmin"
 import Nav from "./common/components/Nav";
 import Sidebar from "./common/components/Sidebar";
 import PageLoader from "./common/components/PageLoader";
+import Loader from "./common/components/Loader";
 import Alert from "./common/components/Alert";
 import NotFound from "./common/components/NotFound";
 import Forbidden from "./common/components/Forbidden";
@@ -86,6 +88,7 @@ class App extends Component {
       loggedIn: false,
       admin: false, 
       loaderActive : false,
+      isloading : false,
       alertType : '',
       alertMessage : '',
       products : [],
@@ -105,6 +108,8 @@ class App extends Component {
     this.showAlert  = this.showAlert.bind(this);
     this.showLoader = this.showLoader.bind(this);
     this.hideLoader = this.hideLoader.bind(this);
+    this.showbtmLoader = this.showbtmLoader.bind(this);
+    this.hidebtmLoader = this.hidebtmLoader.bind(this);
     this.getProducts = this.getProducts.bind(this);
     this.getTickets = this.getTickets.bind(this);
     this.getUsers = this.getUsers.bind(this);
@@ -227,6 +232,15 @@ class App extends Component {
     this.setState({ loaderActive : false });
   }
 
+  
+  showbtmLoader = () =>{
+    this.setState({ isloading : true });
+  }
+  
+  hidebtmLoader = ()=>{
+    this.setState({ isloading : false });
+  }
+
   showAlert = (type, messsage)=>{  
     this.setState({ alertType : type, alertMessage: messsage });
      this.setState({ alertActive : true });
@@ -318,6 +332,8 @@ class App extends Component {
       changepassword: this.changePassword,
       showLoader : this.showLoader,
       hideLoader : this.hideLoader,
+      showbtmLoader : this.showbtmLoader,
+      hidebtmLoader : this.hidebtmLoader,
       showAlert : this.showAlert,
       getProducts : this.getProducts,
       getTickets : this.getTickets,
@@ -356,8 +372,6 @@ class App extends Component {
     return (
       <Provider value={this.getContext()}>
         <div className="home">
-          { this.state.alertActive  && <Alert type={ this.state.alertType } message={ this.state.alertMessage } />}
-          { this.state.loaderActive && <PageLoader />}
           <Fragment>
             <Router basename="/customer-portal" > 
             <ScrollToTop />
@@ -409,7 +423,7 @@ class App extends Component {
                       <AdminPrivateRoute path="/createclientbyid"  permission="CREATECLIENT" component={CreateClientById} />
                       <AdminPrivateRoute path="/viewclient" permission="VIEWCLIENT" component={ViewClient} />
                       <AdminPrivateRoute path="/editclient" permission="UPDATECLIENT" component={EditClient} />
-                      <AdminPrivateRoute path="/adddeployment"  permission="ADDDEPLOYMENT" component={AddDeployment} />
+                      <Route path="/adddeployment"  /*permission="ADDDEPLOYMENT"*/ component={AddDeployment} />
                       <AdminPrivateRoute path="/updatedeployment" permission="UPDATEDEPLOYMENT" component={UpdateDeployment} />
                       <AdminPrivateRoute path="/viewdeployment" permission="VIEWDEPLOYMENT" component={ViewDeployment} />
 
@@ -435,6 +449,10 @@ class App extends Component {
               </div>
             </Router>
           </Fragment>
+       
+          { this.state.alertActive  && <Alert type={ this.state.alertType } message={ this.state.alertMessage } />}
+          { this.state.loaderActive && <PageLoader />}
+          { this.state.isloading && <Loader />}
         </div>
       </Provider>
     );
